@@ -60,6 +60,8 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   - le linter React 19 interdit `setState` directement dans un `useEffect` (on utilise
     `useSyncExternalStore`) et la lecture d'un objet contenant une ref pendant le rendu
     (déstructurer le résultat de `usePagination`) ;
+  - une icône pixel art ajoutée ou modifiée ne s'affiche pas tant que `npm run icons` n'a pas été
+    lancé ;
   - Windows masque les extensions : un fichier peut s'appeler `cv.pdf.pdf`. Les fichiers servis
     par le site doivent être dans `public/`.
 
@@ -82,7 +84,7 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   `<head>` (`layout.tsx`, clé dans `src/lib/theme.ts`).
 - **Typographies** : Space Grotesk (titres/UI), IBM Plex Mono (labels techniques), Inter (corps),
   Press Start 2P (horloge), Gochi Hand (texte du post-it, écrit à la main).
-- **Style pixel** : icônes pixel art dessinées en SVG (16×16 pour les icônes d'apps, objets rétro
+- **Style pixel** : icônes pixel art servies en PNG et agrandies sans flou (16×16 pour les icônes d'apps, objets rétro
   OS sans tuile de fond ; 30×30 pour le post-it, 10×9 pour la punaise), barres de titre en aplat,
   bords nets sans arrondi, ombres dures, aucun dégradé ni flou.
 - **Tailles fluides** : toute l'interface est en `rem` et grandit avec l'écran. La taille de base
@@ -133,7 +135,11 @@ Séparation en couches : logique pure → hooks → rendu.
   `openApp(id, page?, ac?)`. Les fenêtres ouvertes au chargement sont dans `startupWindows`
   (`src/lib/windowManager.ts`).
 - `src/config/wallpaper.ts` : chemin du fond d'écran (`null` = fond uni).
-- `src/components/pixel-icons.tsx` : icônes pixel art dessinées en texte (une lettre = une couleur).
+- `scripts/pixel-art.mjs` : **source** des icônes pixel art, dessinées en texte (une lettre = une
+  couleur). Après une modification : `npm run icons` (`scripts/generate-icons.mjs`) régénère les PNG
+  de `public/icons/`, à committer. `src/components/pixel-icons.tsx` : un composant `<img>` par icône
+  (`next/image` `unoptimized`, `image-rendering: pixelated`). Ne pas revenir à des SVG pixel par pixel
+  (illisible dans l'inspecteur).
 - `src/components/desktop/` : bureau, fenêtres, barre des tâches, menu démarrer, horloge, widgets
   (`ScreenshotViewer`, `StickyNote`).
 - `src/components/apps/` : contenu de chaque fenêtre, un fichier par app. `shared.tsx` contient

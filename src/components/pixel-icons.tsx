@@ -1,309 +1,65 @@
-// Chaque icône est dessinée en texte : une ligne = une rangée de pixels,
-// une lettre = une couleur de la palette Endesga 32, "." = transparent.
-const colors: Record<string, string> = {
-  k: "#181425", // contour
-  d: "#262b44",
-  g: "#3a4466",
-  G: "#5a6988",
-  s: "#8b9bb4",
-  S: "#c0cbdc",
-  w: "#ffffff",
-  p: "#68386c",
-  P: "#b55088",
-  e: "#3e8948",
-  E: "#63c74d",
-  b: "#733e39",
-  B: "#b86f50",
-  K: "#e8b796", // peau
-  y: "#feae34",
-  Y: "#fee761", // papier du post-it
-  r: "#e43b44",
-  D: "#a22633",
-};
+import Image from "next/image";
 
-function PixelIcon({ art, className }: { art: string[]; className?: string }) {
-  const pixels = art.flatMap((row, y) =>
-    [...row].map((char, x) =>
-      char === "." ? null : <rect key={`${x}-${y}`} x={x} y={y} width={1} height={1} fill={colors[char]} />,
-    ),
-  );
-  return (
-    <svg viewBox={`0 0 ${art[0].length} ${art.length}`} shapeRendering="crispEdges" className={className} aria-hidden>
-      {pixels}
-    </svg>
-  );
-}
-
-const briefcase = [
-  "................",
-  "................",
-  "................",
-  ".....kkkkkk.....",
-  ".....kb..bk.....",
-  ".....kb..bk.....",
-  ".kkkkkkkkkkkkkk.",
-  ".kBBBBBBBBBBBBk.",
-  ".kBBBBBBBBBBBBk.",
-  ".kbbbbbkkbbbbbk.",
-  ".kkkkkkyykkkkkk.",
-  ".kBBBBBkkBBBBBk.",
-  ".kBBBBBBBBBBBBk.",
-  ".kbbbbbbbbbbbbk.",
-  ".kkkkkkkkkkkkkk.",
-  "................",
-];
-
-const floppyDisk = [
-  "................",
-  ".kkkkkkkkkkkkkk.",
-  ".kPpkSSSSSSkppk.",
-  ".kppkSSSgSSkppk.",
-  ".kppkSSSgSSkppk.",
-  ".kppkSSSSSSkppk.",
-  ".kpppkkkkkkpppk.",
-  ".kppppppppppppk.",
-  ".kppwwwwwwwwppk.",
-  ".kppweeeeeewppk.",
-  ".kppwwwwwwwwppk.",
-  ".kppwEEEEwwwppk.",
-  ".kppwwwwwwwwppk.",
-  ".kppwwwwwwwwppk.",
-  ".kkkkkkkkkkkkkk.",
-  "................",
-];
-
-const monitor = [
-  "................",
-  ".kkkkkkkkkkkkkk.",
-  ".kSSSSSSSSSSSSk.",
-  ".kSkkkkkkkkkkSk.",
-  ".kSkddddddddkSk.",
-  ".kSkdddddEddkSk.",
-  ".kSkdddddEddkSk.",
-  ".kSkdddEdEddkSk.",
-  ".kSkdEdEdEddkSk.",
-  ".kSkdEdEdEddkSk.",
-  ".kSkkkkkkkkkkSk.",
-  ".kSSSSSSSSSSESk.",
-  ".kkkkkkkkkkkkkk.",
-  ".....kssssk.....",
-  "...kkkkkkkkkk...",
-  "................",
-];
-
-const character = [
-  "................",
-  ".....kkkkkk.....",
-  "....kbbbbbbk....",
-  "...kbbbbbbbbk...",
-  "...kbKKKKKKbk...",
-  "...kKKkKKkKKk...",
-  "...kKKKKKKKKk...",
-  "...kKKKkkKKKk...",
-  "....kKKKKKKk....",
-  ".....kkKKkk.....",
-  "...kkeeKKeekk...",
-  "..keeeeeeeeeek..",
-  ".keeeeEeeEeeeek.",
-  ".keeeeeeeeeeeek.",
-  ".kkkkkkkkkkkkkk.",
-  "................",
-];
-
-const envelope = [
-  "................",
-  "................",
-  "................",
-  ".kkkkkkkkkkkkkk.",
-  ".kwkwwwwwwwwkwk.",
-  ".kwwkwwwwwwkwwk.",
-  ".kwwwkwwwwkwwwk.",
-  ".kwwwwkPPkwwwwk.",
-  ".kwwwwwkkwwwwwk.",
-  ".kwwwwwwwwwwwwk.",
-  ".kSSSSSSSSSSSSk.",
-  ".kkkkkkkkkkkkkk.",
-  "................",
-  "................",
-  "................",
-  "................",
-];
-
-const medal = [
-  "................",
-  "..kkkk....kkkk..",
-  "..kPPPk..kPPPk..",
-  "...kPPPkkPPPk...",
-  "....kPPPPPPk....",
-  ".....kkkkkk.....",
-  "....kyyyyyyk....",
-  "...kywyyyyyyk...",
-  "..kywyyyyyyyyk..",
-  "..kyyyyyyyyyBk..",
-  "..kyyyyyyyyyBk..",
-  "...kyyyyyyyBk...",
-  "....kBBBBBBk....",
-  ".....kkkkkk.....",
-  "................",
-  "................",
-];
-
-const spreadsheet = [
-  "................",
-  ".kkkkkkkkkkkkkk.",
-  ".kPPPkPPPkPPPPk.",
-  ".kkkkkkkkkkkkkk.",
-  ".kSSSkwwwkwwwwk.",
-  ".kSSSkwEwkwwwwk.",
-  ".kSSSkwwwkwwwwk.",
-  ".kkkkkkkkkkkkkk.",
-  ".kSSSkwwwkwwwwk.",
-  ".kSSSkwwwkwwEwk.",
-  ".kSSSkwwwkwwwwk.",
-  ".kkkkkkkkkkkkkk.",
-  ".kSSSkwwwkwwwwk.",
-  ".kSSSkwEwkwEwwk.",
-  ".kkkkkkkkkkkkkk.",
-  "................",
-];
-
-const textFile = [
-  "................",
-  "..kkkkkkkkk.....",
-  "..kwwwwwwwkk....",
-  "..kwwwwwwwkSk...",
-  "..kwwwwwwwkkkk..",
-  "..kwgggggwwwwk..",
-  "..kwwwwwwwwwwk..",
-  "..kwggggggggwk..",
-  "..kwwwwwwwwwwk..",
-  "..kwgggggggwwk..",
-  "..kwwwwwwwwwwk..",
-  "..kwggggggggwk..",
-  "..kwwwwwwwwwwk..",
-  "..kwwwwwwwwwwk..",
-  "..kkkkkkkkkkkk..",
-  "................",
-];
-
-const trash = [
-  "................",
-  "......kkkk......",
-  "..kkkkkSSkkkkk..",
-  "..kSSSSSSSSSSk..",
-  "..kkkkkkkkkkkk..",
-  "...kSsSsSsSsk...",
-  "...kSsSsSsSsk...",
-  "...kSsSsSsSsk...",
-  "...kSsSsSsSsk...",
-  "...kSsSsSsSsk...",
-  "...kSsSsSsSsk...",
-  "...kSsSsSsSsk...",
-  "....kSsSsSsk....",
-  "....kkkkkkkk....",
-  "................",
-  "................",
-];
-
-const pushpin = [
-  "...kkkk...",
-  "..krrwrk..",
-  ".krrrrrrk.",
-  ".krrrrrrk.",
-  "..kDDDDk..",
-  "...kDDk...",
-  "....ks....",
-  "....ks....",
-  "....k.....",
-];
-
-const stickyNote = [
-  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
-  "kyyyyyyyyyyyyyyyyyyyyyyyyyyyyk",
-  "kyyyyyyyyyyyyyyyyyyyyyyyyyyyyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
-  "kYYYYYYYYYYYYYYYYYYYYkkkkkkkkk",
-  "kYYYYYYYYYYYYYYYYYYYYkyyyyyyk.",
-  "kYYYYYYYYYYYYYYYYYYYYkyyyyyk..",
-  "kYYYYYYYYYYYYYYYYYYYYkyyyyk...",
-  "kYYYYYYYYYYYYYYYYYYYYkyyyk....",
-  "kYYYYYYYYYYYYYYYYYYYYkyyk.....",
-  "kYYYYYYYYYYYYYYYYYYYYkyk......",
-  "kyyyyyyyyyyyyyyyyyyyykk.......",
-  "kkkkkkkkkkkkkkkkkkkkkk........",
-];
-
-const padlock = [
-  "................",
-  ".....kkkkkk.....",
-  "....kSSSSSSk....",
-  "....kSkkkkSk....",
-  "....kSk..kSk....",
-  "....kSk..kSk....",
-  "...kkkkkkkkkk...",
-  "...kyyyyyyyyk...",
-  "...kyyykkyyyk...",
-  "...kyyykkyyyk...",
-  "...kyyyykyyyk...",
-  "...kBBBBBBBBk...",
-  "...kkkkkkkkkk...",
-  "................",
-  "................",
-  "................",
-];
-
-const arrowLeft = [
-  "........",
-  "....S...",
-  "...SS...",
-  "..SSS...",
-  ".SSSS...",
-  "..SSS...",
-  "...SS...",
-  "....S...",
-];
-
-const arrowRight = [
-  "........",
-  "...S....",
-  "...SS...",
-  "...SSS..",
-  "...SSSS.",
-  "...SSS..",
-  "...SS...",
-  "...S....",
-];
+// Icônes pixel art : des PNG générés depuis scripts/pixel-art.mjs (`npm run icons`), à la taille
+// du dessin, et agrandis sans flou (`image-rendering: pixelated`). `unoptimized` : Next.js sert
+// le fichier tel quel (il est déjà minuscule, et le redimensionner le rendrait flou).
 
 type IconProps = { className?: string };
 
-export const BriefcaseIcon = ({ className }: IconProps) => <PixelIcon art={briefcase} className={className} />;
-export const FloppyDiskIcon = ({ className }: IconProps) => <PixelIcon art={floppyDisk} className={className} />;
-export const MonitorIcon = ({ className }: IconProps) => <PixelIcon art={monitor} className={className} />;
-export const MedalIcon = ({ className }: IconProps) => <PixelIcon art={medal} className={className} />;
-export const SpreadsheetIcon = ({ className }: IconProps) => <PixelIcon art={spreadsheet} className={className} />;
-export const TextFileIcon = ({ className }: IconProps) => <PixelIcon art={textFile} className={className} />;
-export const TrashIcon = ({ className }: IconProps) => <PixelIcon art={trash} className={className} />;
-export const PushpinIcon = ({ className }: IconProps) => <PixelIcon art={pushpin} className={className} />;
-export const StickyNoteIcon = ({ className }: IconProps) => <PixelIcon art={stickyNote} className={className} />;
-export const CharacterIcon = ({ className }: IconProps) => <PixelIcon art={character} className={className} />;
-export const EnvelopeIcon = ({ className }: IconProps) => <PixelIcon art={envelope} className={className} />;
-export const PadlockIcon = ({ className }: IconProps) => <PixelIcon art={padlock} className={className} />;
-export const ArrowLeftIcon = ({ className }: IconProps) => <PixelIcon art={arrowLeft} className={className} />;
-export const ArrowRightIcon = ({ className }: IconProps) => <PixelIcon art={arrowRight} className={className} />;
+function PixelIcon({ name, width, height, className }: IconProps & { name: string; width: number; height: number }) {
+  return (
+    <Image
+      src={`/icons/${name}.png`}
+      alt=""
+      aria-hidden
+      width={width}
+      height={height}
+      unoptimized
+      draggable={false}
+      className={`[image-rendering:pixelated] ${className ?? ""}`}
+    />
+  );
+}
+
+export const BriefcaseIcon = ({ className }: IconProps) => (
+  <PixelIcon name="briefcase" width={16} height={16} className={className} />
+);
+export const FloppyDiskIcon = ({ className }: IconProps) => (
+  <PixelIcon name="floppy-disk" width={16} height={16} className={className} />
+);
+export const MonitorIcon = ({ className }: IconProps) => (
+  <PixelIcon name="monitor" width={16} height={16} className={className} />
+);
+export const MedalIcon = ({ className }: IconProps) => (
+  <PixelIcon name="medal" width={16} height={16} className={className} />
+);
+export const SpreadsheetIcon = ({ className }: IconProps) => (
+  <PixelIcon name="spreadsheet" width={16} height={16} className={className} />
+);
+export const TextFileIcon = ({ className }: IconProps) => (
+  <PixelIcon name="text-file" width={16} height={16} className={className} />
+);
+export const TrashIcon = ({ className }: IconProps) => (
+  <PixelIcon name="trash" width={16} height={16} className={className} />
+);
+export const PushpinIcon = ({ className }: IconProps) => (
+  <PixelIcon name="pushpin" width={10} height={9} className={className} />
+);
+export const StickyNoteIcon = ({ className }: IconProps) => (
+  <PixelIcon name="sticky-note" width={30} height={30} className={className} />
+);
+export const CharacterIcon = ({ className }: IconProps) => (
+  <PixelIcon name="character" width={16} height={16} className={className} />
+);
+export const EnvelopeIcon = ({ className }: IconProps) => (
+  <PixelIcon name="envelope" width={16} height={16} className={className} />
+);
+export const PadlockIcon = ({ className }: IconProps) => (
+  <PixelIcon name="padlock" width={16} height={16} className={className} />
+);
+export const ArrowLeftIcon = ({ className }: IconProps) => (
+  <PixelIcon name="arrow-left" width={8} height={8} className={className} />
+);
+export const ArrowRightIcon = ({ className }: IconProps) => (
+  <PixelIcon name="arrow-right" width={8} height={8} className={className} />
+);

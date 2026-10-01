@@ -7,7 +7,7 @@ import { useLocale } from "@/i18n/locale";
 
 /**
  * Post-it punaisé sur le bureau, avec un mot de Denis. Le papier et la punaise sont dessinés
- * en pixel art (voir pixel-icons.tsx) ; le texte est posé par-dessus, dans la zone de papier
+ * en pixel art (voir scripts/pixel-art.mjs) ; le texte est posé par-dessus, dans la zone de papier
  * (sous la bande adhésive, au-dessus du coin plié).
  */
 export function StickyNote({ openApp }: { openApp: (id: AppId) => void }) {
@@ -21,7 +21,7 @@ export function StickyNote({ openApp }: { openApp: (id: AppId) => void }) {
     <figure className="relative ml-auto w-60 pt-3.5">
       <PushpinIcon className="absolute top-0 left-1/2 z-10 h-9 w-10 -translate-x-1/2" />
       <div className="relative">
-        <StickyNoteIcon className="block w-full drop-shadow-[4px_4px_0_var(--color-ink)]" />
+        <StickyNoteIcon className="block h-auto w-full drop-shadow-[4px_4px_0_var(--color-ink)]" />
         <div className="absolute inset-x-[10%] top-[15%] font-hand text-[1.0625rem] leading-tight text-ink">
           {stickyNote.paragraphs.map((paragraph) => (
             <p key={paragraph.fr} className="mb-2.5">
