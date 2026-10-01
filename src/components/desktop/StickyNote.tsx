@@ -22,7 +22,7 @@ export function StickyNote({ openApp }: { openApp: (id: AppId) => void }) {
       <PushpinIcon className="absolute top-0 left-1/2 z-10 h-9 w-10 -translate-x-1/2" />
       <div className="relative">
         <StickyNoteIcon className="block w-full drop-shadow-[4px_4px_0_var(--color-ink)]" />
-        <div className="absolute inset-x-[10%] top-[15%] font-hand text-[17px] leading-tight text-ink">
+        <div className="absolute inset-x-[10%] top-[15%] font-hand text-[1.0625rem] leading-tight text-ink">
           {stickyNote.paragraphs.map((paragraph) => (
             <p key={paragraph.fr} className="mb-2.5">
               {translate(paragraph)}

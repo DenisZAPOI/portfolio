@@ -30,14 +30,14 @@ export function TableauApp({ openApp }: AppContentProps) {
       <table className="mt-3 w-full border-collapse">
         <thead>
           <tr>
-            <th className="pb-2 text-left font-mono text-[10.5px] font-normal uppercase tracking-wider text-muted">
+            <th className="pb-2 text-left font-mono text-label font-normal uppercase tracking-wider text-muted">
               {translate(competence.title)}
             </th>
             {projectsWithAcs.map((project) => (
               <th
                 key={project.title.fr}
                 scope="col"
-                className="w-24 px-1 pb-2 align-bottom font-mono text-[10.5px] font-normal uppercase text-green max-sm:w-12 max-sm:text-[9px] max-sm:break-words"
+                className="w-24 px-1 pb-2 align-bottom font-mono text-label font-normal uppercase text-green max-sm:w-12 max-sm:text-[9px] max-sm:break-words"
               >
                 {translate(project.title)}
               </th>
@@ -50,7 +50,7 @@ export function TableauApp({ openApp }: AppContentProps) {
               <th
                 colSpan={columnCount}
                 scope="colgroup"
-                className="border-t-2 border-line-strong pt-3 pb-1 text-left font-mono text-[10.5px] font-normal uppercase tracking-wider text-muted"
+                className="border-t-2 border-line-strong pt-3 pb-1 text-left font-mono text-label font-normal uppercase tracking-wider text-muted"
               >
                 {ui.competences.level} {level.number} — {translate(level.title)}
               </th>
@@ -69,7 +69,7 @@ export function TableauApp({ openApp }: AppContentProps) {
                       type="button"
                       onClick={() => competencePage !== null && openApp("competences", competencePage, ac.id)}
                       title={ui.projects.openCompetence}
-                      className="mr-2 font-mono text-[10.5px] text-magenta underline-offset-2 hover:underline"
+                      className="mr-2 font-mono text-label text-magenta underline-offset-2 hover:underline"
                     >
                       {ac.id}
                     </button>

@@ -12,7 +12,7 @@ import { DisclosureArrow, ScrollArea, SectionTitle, summaryClass, Tabs, Tag, Tit
 const COMPETENCES_PER_PAGE = 1;
 
 const projectButtonClass =
-  "border border-green px-1.5 py-0.5 font-mono text-[10.5px] uppercase text-green hover:bg-green hover:text-ink focus-visible:bg-green focus-visible:text-ink focus-visible:outline-none";
+  "border border-green px-1.5 py-0.5 font-mono text-label uppercase text-green hover:bg-green hover:text-ink focus-visible:bg-green focus-visible:text-ink focus-visible:outline-none";
 
 export function CompetencesApp({
   active,
@@ -72,7 +72,7 @@ function CompetencePage({ competence, focusedAc, openApp }: CompetencePageProps)
       <details className="group mt-2">
         <summary className={`${summaryClass} text-muted hover:text-text`}>
           <DisclosureArrow />
-          <span className="mt-0.5 font-mono text-[11px]">{ui.competences.about}</span>
+          <span className="mt-0.5 font-mono text-label-lg">{ui.competences.about}</span>
         </summary>
         <div className="mt-1.5 pl-7.5">
           <p>{translate(competence.description)}</p>
@@ -85,7 +85,7 @@ function CompetencePage({ competence, focusedAc, openApp }: CompetencePageProps)
       </details>
 
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 font-mono text-[10.5px] uppercase tracking-wider text-muted">
+        <span className="mr-1 font-mono text-label uppercase tracking-wider text-muted">
           {ui.competences.technologies}
         </span>
         {technologiesOfCompetence(competence).map((technology) => (
@@ -113,7 +113,7 @@ function CompetencePage({ competence, focusedAc, openApp }: CompetencePageProps)
               }`}
             >
               <p>
-                <span className="mr-2 font-mono text-[10.5px]">{ac.id}</span>
+                <span className="mr-2 font-mono text-label">{ac.id}</span>
                 <span className={proven ? "text-text" : ""}>{translate(ac.title)}</span>
               </p>
               {proven && (

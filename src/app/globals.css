@@ -17,6 +17,10 @@
   --color-body: #c0cbdc;
   --color-muted: #8b9bb4;
 
+  /* Petits textes en mono (labels, codes d'AC). */
+  --text-label: 0.65625rem;
+  --text-label-lg: 0.6875rem;
+
   --font-sans: var(--font-inter), sans-serif;
   --font-display: var(--font-space-grotesk), sans-serif;
   --font-mono: var(--font-plex-mono), monospace;
@@ -27,6 +31,15 @@
 html,
 body {
   height: 100%;
+}
+
+/*
+ * Taille de base fluide : toute l'interface est en rem et grandit avec l'écran.
+ * 16 px sur un portable (et sur mobile), ~18 px en 1920×1080, ~21 px en 2560×1440, 22 px au plus.
+ * `min(vw, vh)` évite de trop grossir sur les écrans très larges mais peu hauts.
+ */
+html {
+  font-size: clamp(16px, min(0.45vw, 0.8vh) + 9.5px, 22px);
 }
 
 body {

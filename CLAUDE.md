@@ -79,6 +79,12 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 - **Style pixel** : icônes pixel art dessinées en SVG (16×16 pour les icônes d'apps, objets rétro
   OS sans tuile de fond ; 30×30 pour le post-it, 10×9 pour la punaise), barres de titre en aplat,
   bords nets sans arrondi, ombres dures, aucun dégradé ni flou.
+- **Tailles fluides** : toute l'interface est en `rem` et grandit avec l'écran. La taille de base
+  (`html { font-size }` dans `globals.css`) va de 16 px (portable, mobile) à ~18 px en 1920×1080 et
+  ~21 px en 2560×1440 (22 px au plus, `min(vw, vh)` pour les écrans larges mais bas). **Ne pas écrire
+  de tailles en `px`** (sauf ombres dures et valeurs `max-sm:`) : utiliser l'échelle Tailwind, les
+  tokens `text-label` / `text-label-lg`, ou des `rem`. Fenêtres : 30 rem, 42 rem si `wide`,
+  contenu limité à 70 % de l'écran et jamais sous la barre des tâches.
 - **Fond d'écran** : image fournie par Denis plus tard (`public/` + `src/config/wallpaper.ts`),
   fond uni en attendant.
 - **Mobile** : la grille d'icônes reste, un tap ouvre la fenêtre en plein écran, pas de drag.

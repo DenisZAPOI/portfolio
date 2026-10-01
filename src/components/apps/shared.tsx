@@ -3,7 +3,7 @@ import { ArrowRightIcon } from "@/components/pixel-icons";
 /** Zone de contenu d'une fenêtre, qui défile si le contenu est trop long. */
 export function ScrollArea({ children, ref }: { children: React.ReactNode; ref?: React.Ref<HTMLDivElement> }) {
   return (
-    <div ref={ref} className="min-h-0 flex-1 overflow-y-auto px-[22px] pt-5 pb-6">
+    <div ref={ref} className="min-h-0 flex-1 overflow-y-auto px-5.5 pt-5 pb-6">
       {children}
     </div>
   );
@@ -23,12 +23,12 @@ export function Caption({ children }: { children: React.ReactNode }) {
 
 /** Intertitre d'une fenêtre, en mono comme les sections du menu démarrer. */
 export function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h4 className="mt-5 font-mono first:mt-0 text-[10.5px] uppercase tracking-wider text-muted">{children}</h4>;
+  return <h4 className="mt-5 font-mono first:mt-0 text-label uppercase tracking-wider text-muted">{children}</h4>;
 }
 
 export function Tag({ children }: { children: React.ReactNode }) {
   return (
-    <span className="border border-green-dark px-1.5 py-0.5 font-mono text-[10.5px] uppercase text-green">{children}</span>
+    <span className="border border-green-dark px-1.5 py-0.5 font-mono text-label uppercase text-green">{children}</span>
   );
 }
 
@@ -53,9 +53,9 @@ export function Tabs({
             role="tab"
             aria-selected={selected}
             onClick={() => onSelect(index)}
-            className={`border-2 border-b-0 px-3 font-mono text-[11px] ${
+            className={`border-2 border-b-0 px-3 font-mono text-label-lg ${
               selected
-                ? "-mb-0.5 border-line-strong bg-surface pt-1.5 pb-[5px] text-text"
+                ? "-mb-0.5 border-line-strong bg-surface pt-1.5 pb-[0.3125rem] text-text"
                 : "border-line bg-surface-2 py-1 text-muted hover:text-text"
             }`}
           >

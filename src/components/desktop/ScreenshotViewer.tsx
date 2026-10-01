@@ -32,7 +32,7 @@ export function ScreenshotViewer({ openApp }: { openApp: (id: AppId, page?: numb
 
   return (
     <section className="border-2 border-line-strong bg-surface shadow-[4px_4px_0_var(--color-ink)]">
-      <h2 className="truncate bg-surface-2 px-3 py-1.5 font-mono text-[11px] text-body">
+      <h2 className="truncate bg-surface-2 px-3 py-1.5 font-mono text-label-lg text-body">
         {ui.viewer.title} — {fileName}
       </h2>
       <button

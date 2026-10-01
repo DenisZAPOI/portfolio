@@ -46,8 +46,8 @@ export function Desktop() {
       className="relative h-dvh overflow-hidden bg-cover bg-center pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]"
     >
       <ul
-        style={{ gridTemplateRows: `repeat(${iconsPerColumn}, 96px)` }}
-        className="absolute top-5 bottom-16 left-6 z-[1] grid content-start grid-flow-col auto-cols-[84px] gap-x-4 max-sm:top-4.5 max-sm:right-3.5 max-sm:left-3.5 max-sm:grid-flow-row max-sm:grid-cols-[repeat(auto-fill,72px)] max-sm:grid-rows-none! max-sm:gap-3.5">
+        style={{ gridTemplateRows: `repeat(${iconsPerColumn}, 7rem)` }}
+        className="absolute top-5 bottom-16 left-6 z-[1] grid content-start grid-flow-col auto-cols-[6rem] gap-x-4 max-sm:top-4.5 max-sm:right-3.5 max-sm:left-3.5 max-sm:grid-flow-row max-sm:grid-cols-[repeat(auto-fill,72px)] max-sm:grid-rows-none! max-sm:gap-3.5">
         {gridApps.map((app) => (
           <li key={app.id}>
             <DesktopIcon app={app} onOpen={() => windows.open(app.id)} />
@@ -112,10 +112,10 @@ function DesktopIcon({ app, onOpen }: { app: AppDefinition; onOpen: () => void }
     <button
       type="button"
       onClick={onOpen}
-      className="group flex w-[84px] flex-col items-center gap-1.5 px-1 py-2 focus-visible:outline-none max-sm:w-[72px]"
+      className="group flex w-24 flex-col items-center gap-1.5 px-1 py-2 focus-visible:outline-none max-sm:w-[72px]"
     >
-      <Icon className="size-12 drop-shadow-[2px_2px_0_var(--color-ink)]" />
-      <span className="px-1 text-[11.5px] [text-shadow:1px_1px_0_var(--color-ink)] group-hover:bg-purple group-focus-visible:bg-purple">
+      <Icon className="size-14 drop-shadow-[2px_2px_0_var(--color-ink)] max-sm:size-12" />
+      <span className="px-1 text-xs [text-shadow:1px_1px_0_var(--color-ink)] group-hover:bg-purple group-focus-visible:bg-purple">
         {ui.apps[id].label}
       </span>
     </button>

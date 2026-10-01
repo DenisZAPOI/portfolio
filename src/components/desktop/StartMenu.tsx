@@ -11,7 +11,7 @@ type Props = {
   onClose: () => void;
 };
 
-const sectionTitle = "px-3 pt-3 pb-1 font-mono text-[10.5px] uppercase tracking-wider text-muted";
+const sectionTitle = "px-3 pt-3 pb-1 font-mono text-label uppercase tracking-wider text-muted";
 const itemClass =
   "flex w-full items-center gap-3 px-3 py-2 text-left text-sm text-text hover:bg-purple focus-visible:bg-purple focus-visible:outline-none";
 
@@ -27,11 +27,11 @@ export function StartMenu({ id, onOpenApp, onClose }: Props) {
   return (
     <div
       id={id}
-      className="absolute bottom-[60px] left-2 z-30 w-72 max-w-[calc(100vw-16px)] border-2 border-line-strong bg-surface p-1.5 shadow-[4px_4px_0_var(--color-ink)]"
+      className="absolute bottom-15 left-2 z-30 w-72 max-w-[calc(100vw-16px)] border-2 border-line-strong bg-surface p-1.5 shadow-[4px_4px_0_var(--color-ink)]"
     >
       <div className="bg-purple px-3 py-3">
         <p className="font-display font-semibold">{profile.name}</p>
-        <p className="font-mono text-[11px] text-text/80">{ui.start.button}.exe</p>
+        <p className="font-mono text-label-lg text-text/80">{ui.start.button}.exe</p>
       </div>
 
       <p className={sectionTitle}>{ui.start.apps}</p>

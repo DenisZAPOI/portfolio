@@ -5,7 +5,7 @@ import type { AppDefinition, AppId } from "@/config/apps";
 import type { AcId } from "@/data/competences";
 import { useWindowDrag } from "@/hooks/useWindowDrag";
 import { useLocale } from "@/i18n/locale";
-import { WIDE_WINDOW_WIDTH, WINDOW_WIDTH } from "@/lib/windowLayout";
+import { WIDE_WINDOW_WIDTH_REM, WINDOW_WIDTH_REM } from "@/lib/windowLayout";
 
 type Props = {
   app: AppDefinition;
@@ -41,8 +41,12 @@ export function Window({
 }: Props) {
   const { ui } = useLocale();
   const titleId = useId();
-  const width = app.wide ? WIDE_WINDOW_WIDTH : WINDOW_WIDTH;
-  const { windowRef, position, startDrag, moveDrag, stopDrag } = useWindowDrag(cascadeIndex, width, app.centered ?? false);
+  const widthRem = app.wide ? WIDE_WINDOW_WIDTH_REM : WINDOW_WIDTH_REM;
+  const { windowRef, position, startDrag, moveDrag, stopDrag } = useWindowDrag(
+    cascadeIndex,
+    widthRem,
+    app.centered ?? false,
+  );
   const { Icon, Content } = app;
 
   // Donne le focus à la fenêtre à son ouverture, pour la navigation au clavier.
@@ -57,7 +61,7 @@ export function Window({
       aria-labelledby={titleId}
       tabIndex={-1}
       onPointerDownCapture={onFocus}
-      style={{ left: position.x, top: position.y, width, zIndex }}
+      style={{ left: position.x, top: position.y, width: `${widthRem}rem`, zIndex }}
       className={`absolute flex max-w-[88vw] flex-col border-2 bg-surface shadow-[4px_4px_0_var(--color-ink)] outline-none max-sm:inset-x-0! max-sm:top-0! max-sm:bottom-13 max-sm:w-auto! max-sm:max-w-none max-sm:shadow-none ${
         active ? "border-line-strong" : "border-line"
       } ${minimized ? "hidden" : ""}`}
@@ -71,7 +75,7 @@ export function Window({
           active ? "bg-purple" : "bg-surface-2 text-body"
         }`}
       >
-        <h2 id={titleId} className="flex items-center gap-2 font-display text-[13.5px] font-semibold">
+        <h2 id={titleId} className="flex items-center gap-2 font-display text-[0.84375rem] font-semibold">
           <Icon className="size-4" />
           {ui.apps[app.id].file}
         </h2>
@@ -94,7 +98,12 @@ export function Window({
           </button>
         </div>
       </div>
-      <div className="flex max-h-[56vh] min-h-0 flex-col text-sm leading-relaxed text-body max-sm:max-h-none max-sm:flex-1">
+      {/* Au plus 70 % de l'écran, et jamais sous la barre des tâches (barre de titre + barre des
+          tâches + marge ≈ 7 rem sous le haut de la fenêtre). */}
+      <div
+        style={{ maxHeight: `min(70vh, calc(100dvh - ${position.y}px - 7rem))` }}
+        className="flex min-h-0 flex-col text-sm leading-relaxed text-body max-sm:max-h-none! max-sm:flex-1"
+      >
         <Content
           active={active}
           page={page}

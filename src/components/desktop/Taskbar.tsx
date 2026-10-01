@@ -41,7 +41,7 @@ export function Taskbar({
           aria-expanded={menuOpen}
           aria-controls={START_MENU_ID}
           onClick={onToggleMenu}
-          className="flex h-9 shrink-0 items-center gap-2 border-2 border-ink bg-green px-3.5 font-display text-[13px] font-semibold text-ink shadow-[2px_2px_0_var(--color-green-dark)] hover:brightness-110 active:translate-y-px active:shadow-none"
+          className="flex h-9 shrink-0 items-center gap-2 border-2 border-ink bg-green px-3.5 font-display text-[0.8125rem] font-semibold text-ink shadow-[2px_2px_0_var(--color-green-dark)] hover:brightness-110 active:translate-y-px active:shadow-none"
         >
           ▲ {ui.start.button}
         </button>
@@ -55,7 +55,7 @@ export function Taskbar({
                 type="button"
                 onClick={() => onTaskbarItemClick(id)}
                 aria-pressed={activeId === id}
-                className={`flex h-[34px] shrink-0 items-center gap-2 border-2 px-3 text-[12.5px] ${
+                className={`flex h-8.5 shrink-0 items-center gap-2 border-2 px-3 text-[0.78125rem] ${
                   activeId === id
                     ? "border-magenta bg-purple text-text"
                     : "border-line bg-surface-2 text-body hover:text-text"

@@ -108,7 +108,7 @@ function ProjectPage({ project, focusedAc, openApp }: ProjectPageProps) {
                 >
                   <summary className={`${summaryClass} -mx-2 px-2 py-1.5 hover:bg-surface-2 group-open:bg-surface-2`}>
                     <DisclosureArrow />
-                    <span className="mt-0.5 shrink-0 font-mono text-[10.5px] text-magenta">{mobilizedAc.id}</span>
+                    <span className="mt-0.5 shrink-0 font-mono text-label text-magenta">{mobilizedAc.id}</span>
                     {ac && <span className="text-text">{translate(ac.title)}</span>}
                   </summary>
                   <div className="mt-1.5 mb-1.5 pl-7.5">
@@ -117,7 +117,7 @@ function ProjectPage({ project, focusedAc, openApp }: ProjectPageProps) {
                       <button
                         type="button"
                         onClick={() => openApp("competences", competencePage, mobilizedAc.id)}
-                        className="mt-1.5 font-mono text-[10.5px] text-magenta underline-offset-2 hover:underline"
+                        className="mt-1.5 font-mono text-label text-magenta underline-offset-2 hover:underline"
                       >
                         {ui.projects.openCompetence} →
                       </button>
