@@ -55,8 +55,33 @@ horloge en temps réel et items actifs.
 ## Décisions prises
 - **Stack** : Next.js 16 (App Router, TypeScript, `src/`) + Tailwind CSS 4.
 - **Dépôt** : public, https://github.com/DenisZAPOI/portfolio
-- **Langues** : français + anglais (switch de langue).
+- **Langues** : français + anglais via un simple bouton de bascule côté client
+  (une seule URL, choix mémorisé dans le navigateur). Français par défaut. Le
+  bouton FR/EN est dans la barre des tâches, à côté de l'horloge.
+- **Mobile** : la grille d'icônes reste, un tap ouvre la fenêtre en plein écran,
+  pas de drag.
+- **Fond** : dégradé violet de la maquette + grille fine discrète.
+- **Menu démarrer** : le bouton « menu » ouvre un panneau listant toutes les
+  fenêtres, des liens rapides (CV, GitHub, LinkedIn) et le choix de langue.
+- **Contenu** : placeholder d'abord, dans des fichiers de données faciles à
+  remplir.
+
+## Organisation du code
+Séparation en couches : logique pure → hooks → rendu.
+- `src/lib/` : logique pure en TypeScript, sans React (une fonction par action
+  sur les fenêtres, calculs de position).
+- `src/hooks/` : branchent la logique sur React (`useWindowManager`,
+  `useWindowDrag`, `useClickOutside`, `useClock`).
+- `src/config/apps.ts` : liste des applications du bureau (id, icône, couleur,
+  contenu).
+- `src/components/desktop/` : rendu du bureau, fenêtres, barre des tâches, menu.
+- `src/components/apps/` : contenu de chaque fenêtre, un fichier par app.
+- `src/data/` : contenu du portfolio, chaque texte en `{ fr, en }`.
+- `src/i18n/` : langue courante (`useLocale`) et textes de l'interface (`ui.ts`).
 
 ## Méthode de travail
 - Pour chaque point imprécis sur la façon dont le site doit être fait, poser la
   question avant d'agir.
+- Lisibilité avant abstraction : ce n'est pas une librairie. Pas de génériques,
+  de reducers ou de hooks configurables quand du code spécifique et explicite
+  suffit. Des noms complets (`translate`, pas `l`).
