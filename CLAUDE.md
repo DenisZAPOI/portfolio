@@ -24,7 +24,12 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   (`src/data/competences.ts`, `src/data/projects.ts` : Terraria, Buvette PHP, Visite facile,
   « Ce portfolio »).
 - Tableau croisé projets × AC : `tableau.exe`.
-- **Prochaine étape** : traces (vidéos ?) et bilans réflexifs par compétence (étapes 3 et 6 du plan).
+- Bureau rempli : `lisezmoi.txt` ouvert au chargement, post-it en pixel art (texte de Denis),
+  visionneuse de captures (en attente des captures), corbeille (en attente de l'easter egg),
+  icônes sur deux colonnes.
+- Site en ligne sur Vercel.
+- **Prochaine étape** : bilans réflexifs par compétence et traces (vidéos ?) — « Étape 3 —
+  Réflexivité » et point 6 de l'ordre de travail du plan. Contenu en attente : voir le TODO du plan.
 
 ## Règles de contenu
 
@@ -71,24 +76,35 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   tokens sont dans `src/app/globals.css`.
 - **Typographies** : Space Grotesk (titres/UI), IBM Plex Mono (labels techniques), Inter (corps),
   Press Start 2P (horloge), Gochi Hand (texte du post-it, écrit à la main).
-- **Style pixel** : icônes pixel art 16×16 dessinées en SVG (objets rétro OS, sans tuile de fond),
-  barres de titre en aplat, bords nets sans arrondi, ombres dures, aucun dégradé ni flou.
+- **Style pixel** : icônes pixel art dessinées en SVG (16×16 pour les icônes d'apps, objets rétro
+  OS sans tuile de fond ; 30×30 pour le post-it, 10×9 pour la punaise), barres de titre en aplat,
+  bords nets sans arrondi, ombres dures, aucun dégradé ni flou.
 - **Fond d'écran** : image fournie par Denis plus tard (`public/` + `src/config/wallpaper.ts`),
   fond uni en attendant.
 - **Mobile** : la grille d'icônes reste, un tap ouvre la fenêtre en plein écran, pas de drag.
-- **Menu démarrer** : liste des fenêtres, liens rapides (CV, GitHub, LinkedIn), choix de langue.
-- **Pagination** : Expérience, Projets et Compétences 1 par page, Technologies 5. Barre d'état toujours visible
-  en bas de la fenêtre, boutons flèche en relief Windows 95, flèches ← → du clavier sur la fenêtre
-  active, retour en haut du contenu à chaque changement de page.
-- **Projets et compétences** : fenêtres larges (640 px). Dans `projets.exe`, un onglet par
-  compétence et des argumentaires repliés (`<details>`) ; dans `competences.exe`, un onglet par
-  niveau, description repliée, AC non prouvés grisés. La navigation croisée ouvre le bon onglet et
-  met en évidence l'AC visé (`focusedAc`).
+  Pas de widgets à droite, et `lisezmoi.txt` ne s'ouvre pas tout seul.
+- **Icônes du bureau** : deux colonnes fixées dans `desktopColumns` (`src/config/apps.ts`) :
+  Lisez-moi, Perso, Technologies, Contact | Expérience, Projets, Compétences, Tableau. Sur mobile,
+  les colonnes sont mises bout à bout. La corbeille est à part, en bas à droite.
+- **Menu démarrer** : liste des fenêtres (dans l'ordre de `apps`, sans la corbeille), liens rapides
+  (CV, GitHub, LinkedIn), choix de langue.
+- **Pagination** : Expérience, Projets et Compétences 1 par page, Technologies 5 (Tableau : pas de
+  pagination, des onglets). Barre d'état toujours visible en bas de la fenêtre, boutons flèche en
+  relief Windows 95, flèches ← → du clavier sur la fenêtre active, retour en haut du contenu à chaque
+  changement de page.
+- **Projets, compétences, tableau** : fenêtres larges (640 px). Dans `projets.exe`, un onglet par
+  compétence et des argumentaires repliés (`<details>`, flèche dans un bouton en relief) ; dans
+  `competences.exe`, un onglet par niveau, description repliée, AC non prouvés grisés ; dans
+  `tableau.exe`, un onglet par compétence, AC en lignes, projets en colonnes. La navigation croisée
+  ouvre le bon onglet et met en évidence l'AC visé (`focusedAc`) ; `navigationCount` la rejoue même
+  si l'on reclique sur le même lien.
 - **Remplissage du bureau** : `lisezmoi.txt` ouvert au chargement, centré (masqué sur mobile :
   `openedAtStartup` + `useIsMobileScreen`), avec le texte d'accueil de Denis et un mode d'emploi
-  cliquable ; à droite (grand écran seulement) une visionneuse de captures de projets et un post-it ;
-  corbeille en bas à droite (`corner: true`, hors grille et menu démarrer) avec un easter egg.
-  Tout leur contenu est dans `src/data/desktop.ts` ; une liste vide masque l'élément.
+  cliquable ; à droite (grand écran seulement) une visionneuse de captures de projets et un post-it
+  en pixel art (texte en Gochi Hand, « Contactez-moi ! » ouvre contact.exe) ; corbeille en bas à
+  droite (`corner: true`, hors grille et menu démarrer) avec un easter egg de Denis.
+  Tout leur contenu est dans `src/data/desktop.ts` ; une liste vide (ou `null`) masque l'élément,
+  la corbeille vide affiche « La corbeille est vide. ».
 - **Expérience verrouillée** : `locked: true` → grisée, avec cadenas et « NULL » en mono.
 
 ## Organisation du code
@@ -97,19 +113,28 @@ Séparation en couches : logique pure → hooks → rendu.
 - `src/lib/` : logique pure en TypeScript, sans React (une fonction par action sur les fenêtres,
   calculs de position, lecture croisée projets ↔ AC dans `competences.ts`).
 - `src/hooks/` : branchent la logique sur React (`useWindowManager`, `useWindowDrag`,
-  `useClickOutside`, `useClock`, `usePagination`).
-- `src/config/apps.ts` : liste des applications du bureau (id, icône, contenu). Le contenu reçoit
-  `AppContentProps` : `active` (fenêtre au premier plan), `page` et `onPageChange` (la page est
-  gardée par le gestionnaire de fenêtres), `openApp(id, page?)` pour la navigation croisée.
+  `useClickOutside`, `useClock`, `usePagination`, `useIsMobileScreen`).
+- `src/config/apps.ts` : liste des applications (id, icône, contenu, options `wide`, `centered`,
+  `corner`) et disposition des icônes (`desktopColumns`). Le contenu reçoit `AppContentProps` :
+  `active` (fenêtre au premier plan), `page` et `onPageChange` (la page est gardée par le
+  gestionnaire de fenêtres), `focusedAc` et `navigationCount` (AC visé par la navigation croisée),
+  `openApp(id, page?, ac?)`. Les fenêtres ouvertes au chargement sont dans `startupWindows`
+  (`src/lib/windowManager.ts`).
 - `src/config/wallpaper.ts` : chemin du fond d'écran (`null` = fond uni).
 - `src/components/pixel-icons.tsx` : icônes pixel art dessinées en texte (une lettre = une couleur).
-- `src/components/desktop/` : bureau, fenêtres, barre des tâches, menu démarrer, horloge.
+- `src/components/desktop/` : bureau, fenêtres, barre des tâches, menu démarrer, horloge, widgets
+  (`ScreenshotViewer`, `StickyNote`).
 - `src/components/apps/` : contenu de chaque fenêtre, un fichier par app. `shared.tsx` contient
-  `ScrollArea`, `Row`, `Title`, `Caption`, `SectionTitle`, `Tag`, `Tabs` (onglets Windows 95), `DisclosureArrow`. `PaginationBar.tsx` est la barre de pagination.
-- `src/data/` : contenu du portfolio, chaque texte en `{ fr, en }`. `desktop.ts` : contenu du bureau
-  (accueil, post-it, captures dans `public/screenshots/`, fichiers de la corbeille).
+  `ScrollArea`, `Row`, `Title`, `Caption`, `SectionTitle`, `Tag`, `Tabs` (onglets Windows 95),
+  `DisclosureArrow`. `PaginationBar.tsx` est la barre de pagination (et exporte `arrowButtonClass`).
+- `src/data/` : contenu du portfolio, chaque texte en `{ fr, en }`. `competences.ts` : référentiel
+  (54 AC, intitulés officiels) ; `projects.ts` : projets et AC mobilisés avec argumentaires (seul
+  endroit où l'on relie un projet aux AC) ; `technologies.ts`, `experiences.ts`, `profile.ts` ;
+  `desktop.ts` : contenu du bureau (accueil, post-it, captures dans `public/screenshots/`, fichiers
+  de la corbeille).
 - `src/i18n/` : langue courante (`useLocale` → `ui`, `translate`) et textes de l'interface (`ui.ts`).
-- `docs/` : documentation du projet (plan de conformité, extrait du référentiel).
+- `docs/` : documentation du projet (plan de conformité, extrait du référentiel, tableau SAÉ × AC
+  validé — `src/data/projects.ts` fait foi pour les argumentaires).
 
 ## Historique des maquettes
 

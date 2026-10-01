@@ -43,25 +43,29 @@ Seule exception : les intitulés officiels des compétences et des AC, recopiés
 |---|---|
 | Parcours | **A** : Réalisation d'applications |
 | Niveaux montrés | **SAÉ des 3 années** : on montre la progression N1 → N2 → N3 (en 3e année : C1, C2, C6) |
-| `skills.exe` (outils avec barres en %) | Devient une app **« Outils » ou « Technologies »**, hors démarche compétences |
+| `skills.exe` (outils avec barres en %) | Devient une app à part, hors démarche compétences (nom retenu : voir plus bas) |
 | Traces / preuves | **Lien vers le dépôt GitHub** du projet, et peut-être (pas encore sûr) une **vidéo de démo** courte |
 | Tableau SAÉ ↔ AC | **Validé** tel quel le 2026-10-01 (y compris les propositions de Claude) |
 | Projets affichés | Terraria, Buvette PHP, Visite facile + « Ce portfolio » (sans AC pour l'instant). Placeholders supprimés |
 | Stage POP Solutions | **Pas un projet** de la double lecture : il reste seulement dans `experience.exe` |
-| Nom de l'app outils | **Technologies** |
+| Nom de l'app outils | **Technologies** (`technologies.exe`, `tech.exe` en anglais) |
+| Compétences affichées | **C1, C2 et C6** seulement (évaluées en 3e année) ; AC non prouvés affichés grisés |
+| Mise en page projets / compétences | 1 page = 1 projet ou 1 compétence, fenêtres larges, onglets, argumentaires repliés |
+| Tableau croisé | **Projets × AC** (pas projets × compétences) |
+| Remplissage du bureau | `lisezmoi.txt` au chargement, visionneuse de captures, post-it, corbeille avec easter egg |
 
-## Écart avec le site actuel (état au 2026-10-01)
+## Écart avec le site (mis à jour le 2026-10-01, après la refonte)
 
-| Exigence | Aujourd'hui | À faire |
+| Exigence | État | Reste à faire |
 |---|---|---|
-| Lecture par compétences | `skills.exe` = technos avec % | Nouvelle app compétences du référentiel |
-| Lecture par projets | `projets.exe` = titre, description, tags | Ajouter les AC mobilisés, l'argumentaire et les traces |
-| Preuves | aucune | Lien GitHub (et vidéo éventuelle) par projet |
-| Réflexivité | aucune | Bilan par compétence, rédigé par Denis |
-| Tableau croisé | aucun | App tableau projets × AC |
+| Lecture par compétences | ✅ `competences.exe` (C1, C2, C6, projets qui prouvent chaque AC) | Bilan réflexif |
+| Lecture par projets | ✅ `projets.exe` (AC mobilisés + argumentaires) | Code SAÉ, semestre, descriptions (TODO) |
+| Preuves | ✅ lien GitHub par projet | Vidéos de démo ? Captures (visionneuse) |
+| Réflexivité | ❌ aucune | Bilan par compétence, rédigé par Denis |
+| Tableau croisé | ✅ `tableau.exe` (projets × AC) | — |
 
-Déjà conforme ou réutilisable : le bureau, la pagination, `experience.exe` (le stage est une SAÉ :
-il doit aussi apparaître comme projet dans la double lecture), `perso.exe`, `contact.exe`.
+Réutilisés tels quels : le bureau, la pagination, `experience.exe`, `perso.exe`, `contact.exe`.
+Le stage POP Solutions reste seulement dans `experience.exe` (décision de Denis, voir plus haut).
 
 ## Plan
 
@@ -71,6 +75,8 @@ il doit aussi apparaître comme projet dans la double lecture), `perso.exe`, `co
   `C1-N3-AC2` (voir notation dans le référentiel).
 - `src/data/projects.ts` enrichi, pour chaque projet/SAÉ : code SAÉ, semestre, contexte, rôle,
   lien GitHub, vidéo (optionnelle), et pour chaque AC mobilisé : id de l'AC + argumentaire `{ fr, en }`.
+  En place : période, tags, dépôts, AC + argumentaires. Pas encore : code SAÉ, semestre (TODO),
+  contexte, rôle, vidéo.
 - **Le lien projet → AC n'est saisi qu'une fois, côté projet.** La vue par compétence et le tableau
   croisé sont calculés à partir de là, donc toujours cohérents.
 - Les outils restent des tags de projet. Une compétence affiche les outils des projets qui la
@@ -100,15 +106,22 @@ seulement la structure, la relecture et la traduction.
    et nouvelle app `competences.exe` (C1, C2, C6 seulement, 1 par page ; AC non prouvés grisés ;
    sous chaque AC, les projets qui le prouvent). Navigation croisée : clic sur un AC → la
    compétence, clic sur un projet → le projet. La page de chaque fenêtre est gardée par le
-   gestionnaire de fenêtres (`open(id, page)`).
+   gestionnaire de fenêtres (`open(id, page, ac)`). Puis allègement : fenêtres larges, onglets
+   (par compétence dans projets, par niveau dans compétences), argumentaires repliés ; la
+   navigation croisée ouvre le bon onglet et met l'AC en évidence.
 4. ✅ `tableau.exe` (`matrix.exe` en anglais) : tableau croisé projets × AC, un onglet par
    compétence (C1, C2, C6), cases cliquables vers l'argumentaire, codes d'AC vers la compétence.
 5. ✅ `skills.exe` renommé en `technologies.exe` (`tech.exe` en anglais).
-6. Traces et bilans au fur et à mesure.
+6. **Prochaine étape** : traces et bilans au fur et à mesure.
+
+Hors plan, fait aussi le 2026-10-01 : déploiement sur Vercel, remplissage du bureau
+(`lisezmoi.txt`, post-it, visionneuse, corbeille, icônes sur deux colonnes).
 
 ## Points encore ouverts
 
 - Vidéos de démo : oui ou non, et hébergement (fichier dans `public/` ou plateforme externe) ?
+- Bilans réflexifs : où les afficher (dans `competences.exe` ?) et sous quelle forme (avant / appris /
+  difficultés / progression ?).
 - « Ce portfolio » n'a **pas d'AC** (décision de Denis) : il reste dans `projets.exe` sans
   compétences mobilisées.
 
@@ -118,7 +131,8 @@ seulement la structure, la relecture et la traduction.
 - [ ] Semestre de chaque projet — fourni par Denis.
 - [ ] Description de Terraria — écrite par Denis.
 - [ ] Description de la Buvette PHP — écrite par Denis.
+- [x] Post-it : texte de Denis en place (`src/data/desktop.ts`).
 - [ ] Contenu du bureau dans `src/data/desktop.ts` (fourni par Denis) : texte d'accueil de
-  lisezmoi.txt, phrase du post-it, captures des projets (`public/screenshots/`), fichiers
-  « supprimés » de la corbeille.
+  lisezmoi.txt, captures des projets avec légende (`public/screenshots/`), fichiers « supprimés »
+  de la corbeille (nom + une phrase).
 - [ ] Fond d'écran (`public/` + `src/config/wallpaper.ts`).
