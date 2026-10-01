@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Gochi_Hand, IBM_Plex_Mono, Inter, Press_Start_2P, Space_Grotesk } from "next/font/google";
 import { LocaleProvider } from "@/i18n/locale";
 import { profile } from "@/data/profile";
+import { THEME_STORAGE_KEY } from "@/lib/theme";
 import "./globals.css";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
@@ -32,12 +33,20 @@ export const metadata: Metadata = {
   description: profile.tagline.fr,
 };
 
+// Applique le thème mémorisé avant l'affichage, pour éviter un flash du thème sombre.
+const applySavedTheme = `try { if (localStorage.getItem("${THEME_STORAGE_KEY}") === "light") document.documentElement.dataset.theme = "light"; } catch {}`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
+      // Le script ci-dessous peut ajouter data-theme avant que React ne prenne la main.
+      suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable} ${pressStart.variable} ${gochiHand.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: applySavedTheme }} />
+      </head>
       <body className="font-sans">
         <LocaleProvider>{children}</LocaleProvider>
       </body>

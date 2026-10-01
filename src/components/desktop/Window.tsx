@@ -72,7 +72,7 @@ export function Window({
         onPointerUp={stopDrag}
         onPointerCancel={stopDrag}
         className={`flex touch-none items-center justify-between py-2 pr-2.5 pl-3 sm:cursor-grab sm:active:cursor-grabbing ${
-          active ? "bg-purple" : "bg-surface-2 text-body"
+          active ? "bg-purple text-on-accent" : "bg-surface-2 text-body"
         }`}
       >
         <h2 id={titleId} className="flex items-center gap-2 font-display text-[0.84375rem] font-semibold">
@@ -84,7 +84,7 @@ export function Window({
             type="button"
             onClick={onMinimize}
             aria-label={ui.window.minimize}
-            className="size-6 border border-ink bg-surface-2 text-xs leading-none hover:bg-line-strong sm:size-5"
+            className="size-6 border border-ink bg-surface-2 text-xs leading-none text-text hover:bg-line-strong sm:size-5"
           >
             _
           </button>
@@ -92,7 +92,7 @@ export function Window({
             type="button"
             onClick={onClose}
             aria-label={ui.window.close}
-            className="size-6 border border-ink bg-surface-2 text-xs leading-none hover:bg-magenta sm:size-5"
+            className="size-6 border border-ink bg-surface-2 text-xs leading-none text-text hover:bg-magenta sm:size-5"
           >
             ×
           </button>

@@ -115,7 +115,7 @@ function DesktopIcon({ app, onOpen }: { app: AppDefinition; onOpen: () => void }
       className="group flex w-24 flex-col items-center gap-1.5 px-1 py-2 focus-visible:outline-none max-sm:w-[72px]"
     >
       <Icon className="size-14 drop-shadow-[2px_2px_0_var(--color-ink)] max-sm:size-12" />
-      <span className="px-1 text-xs [text-shadow:1px_1px_0_var(--color-ink)] group-hover:bg-purple group-focus-visible:bg-purple">
+      <span className="px-1 text-xs text-on-accent [text-shadow:1px_1px_0_var(--color-ink)] group-hover:bg-purple group-focus-visible:bg-purple">
         {ui.apps[id].label}
       </span>
     </button>

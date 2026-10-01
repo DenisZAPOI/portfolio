@@ -74,6 +74,12 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 - **Palette** : Endesga 32 (https://lospec.com/palette-list/endesga-32), choisie pour sortir du
   look lavande/menthe « IA » après comparaison avec Sentry, IMO Health, Phantom et Railway. Les
   tokens sont dans `src/app/globals.css`.
+- **Thèmes** : sombre (par défaut, palette Endesga 32) et « Normal » (clair, couleurs de Windows 2000 :
+  bureau bleu, fenêtres grises, barre de titre bleu marine), au choix dans le menu démarrer. Le
+  thème clair redéfinit les mêmes variables sous `[data-theme="light"]` dans `globals.css` : les
+  classes ne changent pas. Texte sur une couleur d'accent : `text-on-accent` (toujours blanc).
+  Choix mémorisé dans le navigateur (`useTheme`), appliqué avant l'affichage par un script dans
+  `<head>` (`layout.tsx`, clé dans `src/lib/theme.ts`).
 - **Typographies** : Space Grotesk (titres/UI), IBM Plex Mono (labels techniques), Inter (corps),
   Press Start 2P (horloge), Gochi Hand (texte du post-it, écrit à la main).
 - **Style pixel** : icônes pixel art dessinées en SVG (16×16 pour les icônes d'apps, objets rétro
@@ -92,8 +98,8 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 - **Icônes du bureau** : deux colonnes fixées dans `desktopColumns` (`src/config/apps.ts`) :
   Lisez-moi, Perso, Technologies, Contact | Expérience, Projets, Compétences, Tableau. Sur mobile,
   les colonnes sont mises bout à bout. La corbeille est à part, en bas à droite.
-- **Menu démarrer** : liste des fenêtres (dans l'ordre de `apps`, sans la corbeille), liens rapides
-  (CV, GitHub, LinkedIn), choix de langue.
+- **Menu démarrer** : bouton « Menu » ; liste des fenêtres (dans l'ordre de `apps`, sans la
+  corbeille), liens rapides (CV, GitHub, LinkedIn), choix de langue et de thème.
 - **Pagination** : Expérience, Projets et Compétences 1 par page, Technologies 5 (Tableau : pas de
   pagination, des onglets). Barre d'état toujours visible en bas de la fenêtre, boutons flèche en
   relief Windows 95, flèches ← → du clavier sur la fenêtre active, retour en haut du contenu à chaque
@@ -119,7 +125,7 @@ Séparation en couches : logique pure → hooks → rendu.
 - `src/lib/` : logique pure en TypeScript, sans React (une fonction par action sur les fenêtres,
   calculs de position, lecture croisée projets ↔ AC dans `competences.ts`).
 - `src/hooks/` : branchent la logique sur React (`useWindowManager`, `useWindowDrag`,
-  `useClickOutside`, `useClock`, `usePagination`, `useIsMobileScreen`).
+  `useClickOutside`, `useClock`, `usePagination`, `useIsMobileScreen`, `useTheme`).
 - `src/config/apps.ts` : liste des applications (id, icône, contenu, options `wide`, `centered`,
   `corner`) et disposition des icônes (`desktopColumns`). Le contenu reçoit `AppContentProps` :
   `active` (fenêtre au premier plan), `page` et `onPageChange` (la page est gardée par le

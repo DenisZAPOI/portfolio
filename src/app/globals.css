@@ -16,6 +16,8 @@
   --color-text: #ffffff;
   --color-body: #c0cbdc;
   --color-muted: #8b9bb4;
+  /* Texte posé sur une couleur d'accent (barres de titre, menu, libellés du bureau). */
+  --color-on-accent: #ffffff;
 
   /* Petits textes en mono (labels, codes d'AC). */
   --text-label: 0.65625rem;
@@ -26,6 +28,27 @@
   --font-mono: var(--font-plex-mono), monospace;
   --font-pixel: var(--font-press-start), monospace;
   --font-hand: var(--font-gochi-hand), cursive;
+}
+
+/*
+ * Thème clair (« normal ») : couleurs de Windows 2000 — bureau bleu, fenêtres grises, barre de
+ * titre bleu marine, relief blanc (line-strong) et noir (ink). Le thème sombre est celui de
+ * @theme ci-dessus. Les classes ne changent pas : seules les variables sont redéfinies.
+ */
+[data-theme="light"] {
+  --color-desktop: #3a6ea5;
+  --color-surface: #d4d0c8;
+  --color-surface-2: #ece9e2;
+  --color-line: #808080;
+  --color-line-strong: #ffffff;
+  --color-purple: #0a246a;
+  --color-magenta: #9b2c6f;
+  --color-green: #3a9a3a;
+  --color-green-dark: #1f5c1f;
+  --color-ink: #000000;
+  --color-text: #000000;
+  --color-body: #1e1e1e;
+  --color-muted: #555555;
 }
 
 html,

@@ -57,7 +57,7 @@ export function Taskbar({
                 aria-pressed={activeId === id}
                 className={`flex h-8.5 shrink-0 items-center gap-2 border-2 px-3 text-[0.78125rem] ${
                   activeId === id
-                    ? "border-magenta bg-purple text-text"
+                    ? "border-magenta bg-purple text-on-accent"
                     : "border-line bg-surface-2 text-body hover:text-text"
                 }`}
               >
