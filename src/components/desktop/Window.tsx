@@ -72,8 +72,8 @@ export function Window({ app, cascadeIndex, zIndex, minimized, active, onFocus, 
           </button>
         </div>
       </div>
-      <div className="max-h-[56vh] overflow-y-auto px-[22px] pt-5 pb-6 text-sm leading-relaxed text-body max-sm:max-h-none max-sm:flex-1">
-        <Content />
+      <div className="flex max-h-[56vh] min-h-0 flex-col text-sm leading-relaxed text-body max-sm:max-h-none max-sm:flex-1">
+        <Content active={active} />
       </div>
     </div>
   );

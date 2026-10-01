@@ -126,6 +126,47 @@ const envelope = [
   "................",
 ];
 
+const padlock = [
+  "................",
+  ".....kkkkkk.....",
+  "....kSSSSSSk....",
+  "....kSkkkkSk....",
+  "....kSk..kSk....",
+  "....kSk..kSk....",
+  "...kkkkkkkkkk...",
+  "...kyyyyyyyyk...",
+  "...kyyykkyyyk...",
+  "...kyyykkyyyk...",
+  "...kyyyykyyyk...",
+  "...kBBBBBBBBk...",
+  "...kkkkkkkkkk...",
+  "................",
+  "................",
+  "................",
+];
+
+const arrowLeft = [
+  "........",
+  "....S...",
+  "...SS...",
+  "..SSS...",
+  ".SSSS...",
+  "..SSS...",
+  "...SS...",
+  "....S...",
+];
+
+const arrowRight = [
+  "........",
+  "...S....",
+  "...SS...",
+  "...SSS..",
+  "...SSSS.",
+  "...SSS..",
+  "...SS...",
+  "...S....",
+];
+
 type IconProps = { className?: string };
 
 export const BriefcaseIcon = ({ className }: IconProps) => <PixelIcon art={briefcase} className={className} />;
@@ -133,3 +174,6 @@ export const FloppyDiskIcon = ({ className }: IconProps) => <PixelIcon art={flop
 export const MonitorIcon = ({ className }: IconProps) => <PixelIcon art={monitor} className={className} />;
 export const CharacterIcon = ({ className }: IconProps) => <PixelIcon art={character} className={className} />;
 export const EnvelopeIcon = ({ className }: IconProps) => <PixelIcon art={envelope} className={className} />;
+export const PadlockIcon = ({ className }: IconProps) => <PixelIcon art={padlock} className={className} />;
+export const ArrowLeftIcon = ({ className }: IconProps) => <PixelIcon art={arrowLeft} className={className} />;
+export const ArrowRightIcon = ({ className }: IconProps) => <PixelIcon art={arrowRight} className={className} />;

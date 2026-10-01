@@ -70,6 +70,11 @@ horloge en temps réel et items actifs.
   uni en attendant.
 - **Menu démarrer** : le bouton « menu » ouvre un panneau listant toutes les
   fenêtres, des liens rapides (CV, GitHub, LinkedIn) et le choix de langue.
+- **Pagination** : Expérience 1 par page, Projets 3 par page, Compétences 5
+  par page. Une expérience `locked: true` s'affiche grisée avec un cadenas. Barre d'état en
+  bas de la fenêtre, toujours visible (même avec une seule page), boutons
+  flèche en relief Windows 95, flèches ← → du clavier sur la fenêtre active,
+  retour en haut du contenu à chaque changement de page.
 - **Contenu** : placeholder d'abord, dans des fichiers de données faciles à
   remplir.
 

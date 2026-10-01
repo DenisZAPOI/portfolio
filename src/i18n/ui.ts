@@ -16,6 +16,7 @@ const fr = {
   },
   contact: { email: "E-mail", github: "GitHub", linkedin: "LinkedIn" },
   projects: { view: "Voir le projet" },
+  pagination: { page: "Page", previous: "Page précédente", next: "Page suivante" },
   languageToggle: "Changer de langue",
 };
 
@@ -39,6 +40,7 @@ const en: UiTexts = {
   },
   contact: { email: "Email", github: "GitHub", linkedin: "LinkedIn" },
   projects: { view: "View project" },
+  pagination: { page: "Page", previous: "Previous page", next: "Next page" },
   languageToggle: "Change language",
 };
 

@@ -10,7 +10,8 @@ export type AppId = "experience" | "projects" | "skills" | "about" | "contact";
 export type AppDefinition = {
   id: AppId;
   Icon: (props: { className?: string }) => React.ReactNode;
-  Content: () => React.ReactNode;
+  /** `active` : la fenêtre est au premier plan (utile pour les raccourcis clavier). */
+  Content: (props: { active: boolean }) => React.ReactNode;
 };
 
 export const apps: AppDefinition[] = [
