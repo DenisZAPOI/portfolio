@@ -16,6 +16,14 @@ export function cascadePosition(index: number, windowWidth: number, viewport: Si
   };
 }
 
+/** Fenêtre centrée horizontalement, un peu sous le haut de l'écran (lisezmoi.txt). */
+export function centeredPosition(windowWidth: number, viewport: Size): Point {
+  return {
+    x: Math.max(16, Math.round((viewport.width - windowWidth) / 2)),
+    y: Math.max(16, Math.min(90, viewport.height - TASKBAR_HEIGHT - 300)),
+  };
+}
+
 /** Garde toujours un bout de la barre de titre visible, pour pouvoir rattraper la fenêtre. */
 export function clampWindowPosition(pos: Point, windowWidth: number, viewport: Size): Point {
   return {

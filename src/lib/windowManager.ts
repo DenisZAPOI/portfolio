@@ -7,6 +7,8 @@ import type { AcId } from "@/data/competences";
  *   évidence).
  * - `navigationCount` : augmente à chaque navigation croisée vers cette fenêtre. Le contenu s'en
  *   sert comme clé, pour rouvrir le bon onglet même si l'on clique deux fois sur le même lien.
+ * - `openedAtStartup` : ouverte toute seule au chargement (lisezmoi.txt). Masquée sur mobile, où
+ *   elle prendrait tout l'écran ; l'ouvrir à la main la rend visible partout.
  * Dans la liste des fenêtres, la dernière est au premier plan.
  */
 export type OpenWindow = {
@@ -15,7 +17,13 @@ export type OpenWindow = {
   page: number;
   focusedAc?: AcId;
   navigationCount: number;
+  openedAtStartup: boolean;
 };
+
+/** Fenêtres ouvertes au chargement du site. */
+export const startupWindows: OpenWindow[] = [
+  { id: "readme", minimized: false, page: 1, navigationCount: 0, openedAtStartup: true },
+];
 
 function removeId(windows: OpenWindow[], id: AppId) {
   return windows.filter((w) => w.id !== id);
@@ -32,8 +40,15 @@ export function openWindow(windows: OpenWindow[], id: AppId, page?: number, focu
   const navigationCount = current?.navigationCount ?? 0;
   const opened: OpenWindow =
     page === undefined
-      ? { id, minimized: false, page: current?.page ?? 1, focusedAc: current?.focusedAc, navigationCount }
-      : { id, minimized: false, page, focusedAc, navigationCount: navigationCount + 1 };
+      ? {
+          id,
+          minimized: false,
+          page: current?.page ?? 1,
+          focusedAc: current?.focusedAc,
+          navigationCount,
+          openedAtStartup: false,
+        }
+      : { id, minimized: false, page, focusedAc, navigationCount: navigationCount + 1, openedAtStartup: false };
   return [...removeId(windows, id), opened];
 }
 

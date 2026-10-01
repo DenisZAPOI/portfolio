@@ -23,7 +23,7 @@ export function Caption({ children }: { children: React.ReactNode }) {
 
 /** Intertitre d'une fenêtre, en mono comme les sections du menu démarrer. */
 export function SectionTitle({ children }: { children: React.ReactNode }) {
-  return <h4 className="mt-5 font-mono text-[10.5px] uppercase tracking-wider text-muted">{children}</h4>;
+  return <h4 className="mt-5 font-mono first:mt-0 text-[10.5px] uppercase tracking-wider text-muted">{children}</h4>;
 }
 
 export function Tag({ children }: { children: React.ReactNode }) {

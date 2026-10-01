@@ -35,20 +35,22 @@ export function StartMenu({ id, onOpenApp, onClose }: Props) {
       </div>
 
       <p className={sectionTitle}>{ui.start.apps}</p>
-      {apps.map(({ id: appId, Icon }) => (
-        <button
-          key={appId}
-          type="button"
-          className={itemClass}
-          onClick={() => {
-            onOpenApp(appId);
-            onClose();
-          }}
-        >
-          <Icon className="size-4" />
-          {ui.apps[appId].label}
-        </button>
-      ))}
+      {apps
+        .filter((app) => !app.corner)
+        .map(({ id: appId, Icon }) => (
+          <button
+            key={appId}
+            type="button"
+            className={itemClass}
+            onClick={() => {
+              onOpenApp(appId);
+              onClose();
+            }}
+          >
+            <Icon className="size-4" />
+            {ui.apps[appId].label}
+          </button>
+        ))}
 
       <p className={sectionTitle}>{ui.start.links}</p>
       {links.map(({ label, href, Icon }) => (

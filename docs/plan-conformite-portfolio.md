@@ -118,3 +118,7 @@ seulement la structure, la relecture et la traduction.
 - [ ] Semestre de chaque projet — fourni par Denis.
 - [ ] Description de Terraria — écrite par Denis.
 - [ ] Description de la Buvette PHP — écrite par Denis.
+- [ ] Contenu du bureau dans `src/data/desktop.ts` (fourni par Denis) : texte d'accueil de
+  lisezmoi.txt, phrase du post-it, captures des projets (`public/screenshots/`), fichiers
+  « supprimés » de la corbeille.
+- [ ] Fond d'écran (`public/` + `src/config/wallpaper.ts`).

@@ -70,7 +70,7 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   look lavande/menthe « IA » après comparaison avec Sentry, IMO Health, Phantom et Railway. Les
   tokens sont dans `src/app/globals.css`.
 - **Typographies** : Space Grotesk (titres/UI), IBM Plex Mono (labels techniques), Inter (corps),
-  Press Start 2P (horloge).
+  Press Start 2P (horloge), Gochi Hand (texte du post-it, écrit à la main).
 - **Style pixel** : icônes pixel art 16×16 dessinées en SVG (objets rétro OS, sans tuile de fond),
   barres de titre en aplat, bords nets sans arrondi, ombres dures, aucun dégradé ni flou.
 - **Fond d'écran** : image fournie par Denis plus tard (`public/` + `src/config/wallpaper.ts`),
@@ -84,6 +84,11 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   compétence et des argumentaires repliés (`<details>`) ; dans `competences.exe`, un onglet par
   niveau, description repliée, AC non prouvés grisés. La navigation croisée ouvre le bon onglet et
   met en évidence l'AC visé (`focusedAc`).
+- **Remplissage du bureau** : `lisezmoi.txt` ouvert au chargement, centré (masqué sur mobile :
+  `openedAtStartup` + `useIsMobileScreen`), avec le texte d'accueil de Denis et un mode d'emploi
+  cliquable ; à droite (grand écran seulement) une visionneuse de captures de projets et un post-it ;
+  corbeille en bas à droite (`corner: true`, hors grille et menu démarrer) avec un easter egg.
+  Tout leur contenu est dans `src/data/desktop.ts` ; une liste vide masque l'élément.
 - **Expérience verrouillée** : `locked: true` → grisée, avec cadenas et « NULL » en mono.
 
 ## Organisation du code
@@ -101,7 +106,8 @@ Séparation en couches : logique pure → hooks → rendu.
 - `src/components/desktop/` : bureau, fenêtres, barre des tâches, menu démarrer, horloge.
 - `src/components/apps/` : contenu de chaque fenêtre, un fichier par app. `shared.tsx` contient
   `ScrollArea`, `Row`, `Title`, `Caption`, `SectionTitle`, `Tag`, `Tabs` (onglets Windows 95), `DisclosureArrow`. `PaginationBar.tsx` est la barre de pagination.
-- `src/data/` : contenu du portfolio, chaque texte en `{ fr, en }`.
+- `src/data/` : contenu du portfolio, chaque texte en `{ fr, en }`. `desktop.ts` : contenu du bureau
+  (accueil, post-it, captures dans `public/screenshots/`, fichiers de la corbeille).
 - `src/i18n/` : langue courante (`useLocale` → `ui`, `translate`) et textes de l'interface (`ui.ts`).
 - `docs/` : documentation du projet (plan de conformité, extrait du référentiel).
 

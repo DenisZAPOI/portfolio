@@ -14,7 +14,7 @@ type Props = {
 
 // Bouton en relief façon Windows 95 : bord clair en haut à gauche, sombre en bas à droite,
 // inversé quand on appuie dessus.
-const arrowButtonClass =
+export const arrowButtonClass =
   "flex size-7 items-center justify-center border-2 border-t-line-strong border-l-line-strong border-r-ink border-b-ink bg-surface-2 enabled:active:border-t-ink enabled:active:border-l-ink enabled:active:border-r-line-strong enabled:active:border-b-line-strong disabled:opacity-40";
 
 export function PaginationBar({ page, pageCount, isFirstPage, isLastPage, onPrevious, onNext }: Props) {

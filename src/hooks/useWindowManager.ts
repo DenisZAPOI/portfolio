@@ -11,11 +11,12 @@ import {
   getActiveWindow,
   minimizeWindow,
   openWindow,
+  startupWindows,
   type OpenWindow,
 } from "@/lib/windowManager";
 
 export function useWindowManager() {
-  const [openWindows, setOpenWindows] = useState<OpenWindow[]>([]);
+  const [openWindows, setOpenWindows] = useState<OpenWindow[]>(startupWindows);
 
   return {
     openWindows,

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Inter, Press_Start_2P, Space_Grotesk } from "next/font/google";
+import { Gochi_Hand, IBM_Plex_Mono, Inter, Press_Start_2P, Space_Grotesk } from "next/font/google";
 import { LocaleProvider } from "@/i18n/locale";
 import { profile } from "@/data/profile";
 import "./globals.css";
@@ -21,6 +21,12 @@ const pressStart = Press_Start_2P({
   weight: "400",
 });
 
+const gochiHand = Gochi_Hand({
+  variable: "--font-gochi-hand",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: `${profile.name} — Portfolio`,
   description: profile.tagline.fr,
@@ -30,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable} ${pressStart.variable} h-full antialiased`}
+      className={`${inter.variable} ${spaceGrotesk.variable} ${plexMono.variable} ${pressStart.variable} ${gochiHand.variable} h-full antialiased`}
     >
       <body className="font-sans">
         <LocaleProvider>{children}</LocaleProvider>

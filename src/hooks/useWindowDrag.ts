@@ -1,17 +1,21 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { cascadePosition, clampWindowPosition, MOBILE_QUERY, type Point } from "@/lib/windowLayout";
+import { cascadePosition, centeredPosition, clampWindowPosition, MOBILE_QUERY, type Point } from "@/lib/windowLayout";
 
 function getViewport() {
   return { width: window.innerWidth, height: window.innerHeight };
 }
 
 /** Déplace une fenêtre en la tirant par sa barre de titre (désactivé sur mobile). */
-export function useWindowDrag(cascadeIndex: number, windowWidth: number) {
+export function useWindowDrag(cascadeIndex: number, windowWidth: number, centered: boolean) {
   const windowRef = useRef<HTMLDivElement>(null);
   const grabOffset = useRef<Point | null>(null);
-  const [position, setPosition] = useState(() => cascadePosition(cascadeIndex, windowWidth, getViewport()));
+  const [position, setPosition] = useState(() =>
+    centered
+      ? centeredPosition(windowWidth, getViewport())
+      : cascadePosition(cascadeIndex, windowWidth, getViewport()),
+  );
 
   function startDrag(e: React.PointerEvent<HTMLElement>) {
     const clickedAButton = (e.target as HTMLElement).closest("button") !== null;

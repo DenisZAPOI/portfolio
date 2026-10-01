@@ -11,6 +11,7 @@
   --color-magenta: #b55088;
   --color-green: #63c74d;
   --color-green-dark: #3e8948;
+  --color-yellow: #feae34;
   --color-ink: #181425;
   --color-text: #ffffff;
   --color-body: #c0cbdc;
@@ -20,6 +21,7 @@
   --font-display: var(--font-space-grotesk), sans-serif;
   --font-mono: var(--font-plex-mono), monospace;
   --font-pixel: var(--font-press-start), monospace;
+  --font-hand: var(--font-gochi-hand), cursive;
 }
 
 html,

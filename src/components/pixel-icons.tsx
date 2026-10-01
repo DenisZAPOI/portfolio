@@ -16,6 +16,9 @@ const colors: Record<string, string> = {
   B: "#b86f50",
   K: "#e8b796", // peau
   y: "#feae34",
+  Y: "#fee761", // papier du post-it
+  r: "#e43b44",
+  D: "#a22633",
 };
 
 function PixelIcon({ art, className }: { art: string[]; className?: string }) {
@@ -164,6 +167,89 @@ const spreadsheet = [
   "................",
 ];
 
+const textFile = [
+  "................",
+  "..kkkkkkkkk.....",
+  "..kwwwwwwwkk....",
+  "..kwwwwwwwkSk...",
+  "..kwwwwwwwkkkk..",
+  "..kwgggggwwwwk..",
+  "..kwwwwwwwwwwk..",
+  "..kwggggggggwk..",
+  "..kwwwwwwwwwwk..",
+  "..kwgggggggwwk..",
+  "..kwwwwwwwwwwk..",
+  "..kwggggggggwk..",
+  "..kwwwwwwwwwwk..",
+  "..kwwwwwwwwwwk..",
+  "..kkkkkkkkkkkk..",
+  "................",
+];
+
+const trash = [
+  "................",
+  "......kkkk......",
+  "..kkkkkSSkkkkk..",
+  "..kSSSSSSSSSSk..",
+  "..kkkkkkkkkkkk..",
+  "...kSsSsSsSsk...",
+  "...kSsSsSsSsk...",
+  "...kSsSsSsSsk...",
+  "...kSsSsSsSsk...",
+  "...kSsSsSsSsk...",
+  "...kSsSsSsSsk...",
+  "...kSsSsSsSsk...",
+  "....kSsSsSsk....",
+  "....kkkkkkkk....",
+  "................",
+  "................",
+];
+
+const pushpin = [
+  "...kkkk...",
+  "..krrwrk..",
+  ".krrrrrrk.",
+  ".krrrrrrk.",
+  "..kDDDDk..",
+  "...kDDk...",
+  "....ks....",
+  "....ks....",
+  "....k.....",
+];
+
+const stickyNote = [
+  "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkk",
+  "kyyyyyyyyyyyyyyyyyyyyyyyyyyyyk",
+  "kyyyyyyyyyyyyyyyyyyyyyyyyyyyyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYYYYYYYYyk",
+  "kYYYYYYYYYYYYYYYYYYYYkkkkkkkkk",
+  "kYYYYYYYYYYYYYYYYYYYYkyyyyyyk.",
+  "kYYYYYYYYYYYYYYYYYYYYkyyyyyk..",
+  "kYYYYYYYYYYYYYYYYYYYYkyyyyk...",
+  "kYYYYYYYYYYYYYYYYYYYYkyyyk....",
+  "kYYYYYYYYYYYYYYYYYYYYkyyk.....",
+  "kYYYYYYYYYYYYYYYYYYYYkyk......",
+  "kyyyyyyyyyyyyyyyyyyyykk.......",
+  "kkkkkkkkkkkkkkkkkkkkkk........",
+];
+
 const padlock = [
   "................",
   ".....kkkkkk.....",
@@ -212,6 +298,10 @@ export const FloppyDiskIcon = ({ className }: IconProps) => <PixelIcon art={flop
 export const MonitorIcon = ({ className }: IconProps) => <PixelIcon art={monitor} className={className} />;
 export const MedalIcon = ({ className }: IconProps) => <PixelIcon art={medal} className={className} />;
 export const SpreadsheetIcon = ({ className }: IconProps) => <PixelIcon art={spreadsheet} className={className} />;
+export const TextFileIcon = ({ className }: IconProps) => <PixelIcon art={textFile} className={className} />;
+export const TrashIcon = ({ className }: IconProps) => <PixelIcon art={trash} className={className} />;
+export const PushpinIcon = ({ className }: IconProps) => <PixelIcon art={pushpin} className={className} />;
+export const StickyNoteIcon = ({ className }: IconProps) => <PixelIcon art={stickyNote} className={className} />;
 export const CharacterIcon = ({ className }: IconProps) => <PixelIcon art={character} className={className} />;
 export const EnvelopeIcon = ({ className }: IconProps) => <PixelIcon art={envelope} className={className} />;
 export const PadlockIcon = ({ className }: IconProps) => <PixelIcon art={padlock} className={className} />;

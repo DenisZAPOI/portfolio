@@ -42,7 +42,7 @@ export function Window({
   const { ui } = useLocale();
   const titleId = useId();
   const width = app.wide ? WIDE_WINDOW_WIDTH : WINDOW_WIDTH;
-  const { windowRef, position, startDrag, moveDrag, stopDrag } = useWindowDrag(cascadeIndex, width);
+  const { windowRef, position, startDrag, moveDrag, stopDrag } = useWindowDrag(cascadeIndex, width, app.centered ?? false);
   const { Icon, Content } = app;
 
   // Donne le focus à la fenêtre à son ouverture, pour la navigation au clavier.

@@ -23,6 +23,12 @@ export function competencePageOfAc(acId: AcId): number | null {
   return index === -1 ? null : index + 1;
 }
 
+/** Page de projets.exe du projet dont le titre français est `titleFr`, ou `null` s'il n'existe pas. */
+export function findProjectPageByTitle(titleFr: string): number | null {
+  const index = projects.findIndex((project) => project.title.fr === titleFr);
+  return index === -1 ? null : index + 1;
+}
+
 /** Page de projets.exe (un projet par page). */
 export function projectPage(project: Project): number {
   return projects.indexOf(project) + 1;
