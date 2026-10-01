@@ -28,8 +28,15 @@ export function projectPage(project: Project): number {
   return projects.indexOf(project) + 1;
 }
 
+/** Projets qui mobilisent au moins un AC : les colonnes du tableau croisé. */
+export const projectsWithAcs = projects.filter((project) => project.acs.length > 0);
+
+export function projectProvesAc(project: Project, acId: AcId): boolean {
+  return project.acs.some((ac) => ac.id === acId);
+}
+
 export function findProjectsProvingAc(acId: AcId): Project[] {
-  return projects.filter((project) => project.acs.some((ac) => ac.id === acId));
+  return projects.filter((project) => projectProvesAc(project, acId));
 }
 
 /** AC d'un projet regroupés par compétence, dans l'ordre du référentiel. */

@@ -145,6 +145,25 @@ const medal = [
   "................",
 ];
 
+const spreadsheet = [
+  "................",
+  ".kkkkkkkkkkkkkk.",
+  ".kPPPkPPPkPPPPk.",
+  ".kkkkkkkkkkkkkk.",
+  ".kSSSkwwwkwwwwk.",
+  ".kSSSkwEwkwwwwk.",
+  ".kSSSkwwwkwwwwk.",
+  ".kkkkkkkkkkkkkk.",
+  ".kSSSkwwwkwwwwk.",
+  ".kSSSkwwwkwwEwk.",
+  ".kSSSkwwwkwwwwk.",
+  ".kkkkkkkkkkkkkk.",
+  ".kSSSkwwwkwwwwk.",
+  ".kSSSkwEwkwEwwk.",
+  ".kkkkkkkkkkkkkk.",
+  "................",
+];
+
 const padlock = [
   "................",
   ".....kkkkkk.....",
@@ -192,6 +211,7 @@ export const BriefcaseIcon = ({ className }: IconProps) => <PixelIcon art={brief
 export const FloppyDiskIcon = ({ className }: IconProps) => <PixelIcon art={floppyDisk} className={className} />;
 export const MonitorIcon = ({ className }: IconProps) => <PixelIcon art={monitor} className={className} />;
 export const MedalIcon = ({ className }: IconProps) => <PixelIcon art={medal} className={className} />;
+export const SpreadsheetIcon = ({ className }: IconProps) => <PixelIcon art={spreadsheet} className={className} />;
 export const CharacterIcon = ({ className }: IconProps) => <PixelIcon art={character} className={className} />;
 export const EnvelopeIcon = ({ className }: IconProps) => <PixelIcon art={envelope} className={className} />;
 export const PadlockIcon = ({ className }: IconProps) => <PixelIcon art={padlock} className={className} />;

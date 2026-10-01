@@ -101,7 +101,8 @@ seulement la structure, la relecture et la traduction.
    sous chaque AC, les projets qui le prouvent). Navigation croisée : clic sur un AC → la
    compétence, clic sur un projet → le projet. La page de chaque fenêtre est gardée par le
    gestionnaire de fenêtres (`open(id, page)`).
-4. **Prochaine étape** : `tableau.exe`.
+4. ✅ `tableau.exe` (`matrix.exe` en anglais) : tableau croisé projets × AC, un onglet par
+   compétence (C1, C2, C6), cases cliquables vers l'argumentaire, codes d'AC vers la compétence.
 5. ✅ `skills.exe` renommé en `technologies.exe` (`tech.exe` en anglais).
 6. Traces et bilans au fur et à mesure.
 

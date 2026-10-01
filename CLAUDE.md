@@ -23,7 +23,8 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 - Conformité aux consignes en cours : tableau SAÉ ↔ AC validé, données en place
   (`src/data/competences.ts`, `src/data/projects.ts` : Terraria, Buvette PHP, Visite facile,
   « Ce portfolio »).
-- **Prochaine étape** : `tableau.exe`, le tableau croisé projets × AC (voir le plan).
+- Tableau croisé projets × AC : `tableau.exe`.
+- **Prochaine étape** : traces (vidéos ?) et bilans réflexifs par compétence (étapes 3 et 6 du plan).
 
 ## Règles de contenu
 
@@ -59,8 +60,8 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 
 ## Décisions de design
 
-- **Stack** : Next.js 16 (App Router, TypeScript, `src/`) + Tailwind CSS 4. Déploiement prévu
-  plus tard (Vercel ou Netlify, pas encore décidé).
+- **Stack** : Next.js 16 (App Router, TypeScript, `src/`) + Tailwind CSS 4. Déployé sur **Vercel**
+  (depuis le 2026-10-01) : chaque push sur `main` redéploie le site automatiquement.
 - **Dépôt** : public, https://github.com/DenisZAPOI/portfolio
 - **Langues** : français et anglais via un bouton de bascule côté client (une seule URL, choix
   mémorisé dans le navigateur). Français par défaut. Bouton FR/EN dans la barre des tâches, à côté

@@ -3,6 +3,7 @@ import { CompetencesApp } from "@/components/apps/CompetencesApp";
 import { ContactApp } from "@/components/apps/ContactApp";
 import { ExperienceApp } from "@/components/apps/ExperienceApp";
 import { ProjectsApp } from "@/components/apps/ProjectsApp";
+import { TableauApp } from "@/components/apps/TableauApp";
 import { TechnologiesApp } from "@/components/apps/TechnologiesApp";
 import {
   BriefcaseIcon,
@@ -11,10 +12,11 @@ import {
   FloppyDiskIcon,
   MedalIcon,
   MonitorIcon,
+  SpreadsheetIcon,
 } from "@/components/pixel-icons";
 import type { AcId } from "@/data/competences";
 
-export type AppId = "experience" | "projects" | "competences" | "technologies" | "about" | "contact";
+export type AppId = "experience" | "projects" | "competences" | "tableau" | "technologies" | "about" | "contact";
 
 export type AppContentProps = {
   /** La fenêtre est au premier plan (utile pour les raccourcis clavier). */
@@ -42,6 +44,7 @@ export const apps: AppDefinition[] = [
   { id: "experience", Icon: BriefcaseIcon, Content: ExperienceApp },
   { id: "projects", Icon: FloppyDiskIcon, wide: true, Content: ProjectsApp },
   { id: "competences", Icon: MedalIcon, wide: true, Content: CompetencesApp },
+  { id: "tableau", Icon: SpreadsheetIcon, wide: true, Content: TableauApp },
   { id: "technologies", Icon: MonitorIcon, Content: TechnologiesApp },
   { id: "about", Icon: CharacterIcon, Content: AboutApp },
   { id: "contact", Icon: EnvelopeIcon, Content: ContactApp },
