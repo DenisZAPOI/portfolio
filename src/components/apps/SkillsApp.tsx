@@ -12,8 +12,8 @@ export function SkillsApp() {
         <span className="text-text">{translate(skill.name)}</span>
         <span className="font-mono text-xs">{skill.level}%</span>
       </div>
-      <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-line">
-        <div className="h-full bg-linear-to-r from-green to-purple" style={{ width: `${skill.level}%` }} />
+      <div className="mt-1.5 h-2 bg-ink">
+        <div className="h-full bg-green" style={{ width: `${skill.level}%` }} />
       </div>
     </Row>
   ));

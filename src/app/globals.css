@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
+/* Palette Endesga 32 : https://lospec.com/palette-list/endesga-32 */
 @theme {
-  --color-bg1: #1a0d2e;
-  --color-bg2: #0f0819;
-  --color-surface: #211334;
-  --color-surface-2: #2a1a41;
-  --color-purple: #9163f2;
-  --color-purple-dark: #5a35a8;
-  --color-green: #28d999;
-  --color-green-dark: #159066;
-  --color-ink: #0f2419;
-  --color-text: #f4f1fb;
-  --color-muted: #ab9fca;
-  --color-line: #3a2559;
+  --color-desktop: #181425;
+  --color-surface: #262b44;
+  --color-surface-2: #3a4466;
+  --color-line: #3a4466;
+  --color-line-strong: #5a6988;
+  --color-purple: #68386c;
+  --color-magenta: #b55088;
+  --color-green: #63c74d;
+  --color-green-dark: #3e8948;
+  --color-ink: #181425;
+  --color-text: #ffffff;
+  --color-body: #c0cbdc;
+  --color-muted: #8b9bb4;
 
   --font-sans: var(--font-inter), sans-serif;
   --font-display: var(--font-space-grotesk), sans-serif;
@@ -28,16 +30,5 @@ body {
 body {
   overflow: hidden;
   color: var(--color-text);
-  background:
-    radial-gradient(900px 500px at 80% -10%, rgb(145 99 242 / 0.35), transparent 60%),
-    radial-gradient(700px 500px at 5% 100%, rgb(40 217 153 / 0.18), transparent 60%),
-    linear-gradient(160deg, var(--color-bg1), var(--color-bg2));
-}
-
-.wallpaper-grid {
-  background-image:
-    linear-gradient(rgb(145 99 242 / 0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(145 99 242 / 0.09) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+  background: var(--color-desktop);
 }

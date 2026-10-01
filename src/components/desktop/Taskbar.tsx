@@ -35,13 +35,13 @@ export function Taskbar({
   return (
     <div ref={taskbarRef}>
       {menuOpen && <StartMenu id={START_MENU_ID} onOpenApp={onOpenApp} onClose={onCloseMenu} />}
-      <nav className="absolute inset-x-0 bottom-0 z-20 flex h-13 items-center gap-2.5 border-t border-line bg-[rgb(23_13_40/0.9)] px-2.5 backdrop-blur-md">
+      <nav className="absolute inset-x-0 bottom-0 z-20 flex h-13 items-center gap-2.5 border-t-2 border-line-strong bg-surface px-2.5">
         <button
           type="button"
           aria-expanded={menuOpen}
           aria-controls={START_MENU_ID}
           onClick={onToggleMenu}
-          className="flex h-9 shrink-0 items-center gap-2 rounded-lg bg-linear-to-br from-green to-green-dark px-3.5 font-display text-[13px] font-semibold text-ink shadow-[0_4px_10px_-3px_rgb(0_0_0/0.5)] hover:brightness-110"
+          className="flex h-9 shrink-0 items-center gap-2 border-2 border-ink bg-green px-3.5 font-display text-[13px] font-semibold text-ink shadow-[2px_2px_0_var(--color-green-dark)] hover:brightness-110 active:translate-y-px active:shadow-none"
         >
           ▲ {ui.start.button}
         </button>
@@ -55,13 +55,13 @@ export function Taskbar({
                 type="button"
                 onClick={() => onTaskbarItemClick(id)}
                 aria-pressed={activeId === id}
-                className={`flex h-[34px] shrink-0 items-center gap-2 rounded-md border px-3 text-[12.5px] ${
+                className={`flex h-[34px] shrink-0 items-center gap-2 border-2 px-3 text-[12.5px] ${
                   activeId === id
-                    ? "border-purple bg-purple/25 text-text"
-                    : "border-line bg-surface-2 text-muted hover:text-text"
+                    ? "border-magenta bg-purple text-text"
+                    : "border-line bg-surface-2 text-body hover:text-text"
                 }`}
               >
-                <Icon className="size-3.5" />
+                <Icon className="size-4" />
                 <span className="max-sm:hidden">{ui.apps[id].file}</span>
               </button>
             ))}
@@ -72,7 +72,7 @@ export function Taskbar({
           onClick={() => setLocale(locale === "fr" ? "en" : "fr")}
           aria-label={ui.languageToggle}
           title={ui.languageToggle}
-          className="shrink-0 rounded border border-line px-2 py-1 font-mono text-xs uppercase text-muted hover:border-purple hover:text-text"
+          className="shrink-0 border-2 border-line px-2 py-1 font-mono text-xs uppercase text-body hover:border-magenta hover:text-text"
         >
           {locale}
         </button>

@@ -13,7 +13,7 @@ type Props = {
 
 const sectionTitle = "px-3 pt-3 pb-1 font-mono text-[10.5px] uppercase tracking-wider text-muted";
 const itemClass =
-  "flex w-full items-center gap-3 rounded-md px-3 py-2 text-left text-sm text-text hover:bg-white/8 focus-visible:bg-white/8 focus-visible:outline-none";
+  "flex w-full items-center gap-3 px-3 py-2 text-left text-sm text-text hover:bg-purple focus-visible:bg-purple focus-visible:outline-none";
 
 export function StartMenu({ id, onOpenApp, onClose }: Props) {
   const { ui, locale, setLocale } = useLocale();
@@ -27,9 +27,9 @@ export function StartMenu({ id, onOpenApp, onClose }: Props) {
   return (
     <div
       id={id}
-      className="absolute bottom-[60px] left-2 z-30 w-72 max-w-[calc(100vw-16px)] rounded-[10px] border border-line bg-surface/95 p-1.5 shadow-[0_30px_70px_-20px_rgb(0_0_0/0.65)] backdrop-blur-md"
+      className="absolute bottom-[60px] left-2 z-30 w-72 max-w-[calc(100vw-16px)] border-2 border-line-strong bg-surface p-1.5 shadow-[4px_4px_0_var(--color-ink)]"
     >
-      <div className="rounded-md bg-linear-to-r from-purple-dark via-purple to-green-dark px-3 py-3">
+      <div className="bg-purple px-3 py-3">
         <p className="font-display font-semibold">{profile.name}</p>
         <p className="font-mono text-[11px] text-text/80">{ui.start.button}.exe</p>
       </div>
@@ -45,7 +45,7 @@ export function StartMenu({ id, onOpenApp, onClose }: Props) {
             onClose();
           }}
         >
-          <Icon className="size-4 text-purple" />
+          <Icon className="size-4" />
           {ui.apps[appId].label}
         </button>
       ))}
@@ -67,10 +67,10 @@ export function StartMenu({ id, onOpenApp, onClose }: Props) {
             type="button"
             aria-pressed={locale === code}
             onClick={() => setLocale(code)}
-            className={`rounded px-3 py-1 font-mono text-xs uppercase ${
+            className={`border-2 px-3 py-1 font-mono text-xs uppercase ${
               locale === code
-                ? "bg-green text-ink"
-                : "border border-line text-muted hover:text-text"
+                ? "border-ink bg-green text-ink"
+                : "border-line text-body hover:text-text"
             }`}
           >
             {code}

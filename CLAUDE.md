@@ -60,7 +60,14 @@ horloge en temps réel et items actifs.
   bouton FR/EN est dans la barre des tâches, à côté de l'horloge.
 - **Mobile** : la grille d'icônes reste, un tap ouvre la fenêtre en plein écran,
   pas de drag.
-- **Fond** : dégradé violet de la maquette + grille fine discrète.
+- **Palette** : Endesga 32 (palette pixel art de Lospec,
+  https://lospec.com/palette-list/endesga-32), choisie pour sortir du look
+  lavande/menthe « IA ». Interface, icônes et fond partagent ces couleurs.
+- **Style pixel** : icônes pixel art dessinées en SVG (objets rétro OS, sans
+  tuile de fond), barres de titre en aplat, bords nets sans arrondi, ombres
+  dures (pas de flou ni de dégradé).
+- **Fond d'écran** : image fournie par Denis (à déposer dans `public/`), fond
+  uni en attendant.
 - **Menu démarrer** : le bouton « menu » ouvre un panneau listant toutes les
   fenêtres, des liens rapides (CV, GitHub, LinkedIn) et le choix de langue.
 - **Contenu** : placeholder d'abord, dans des fichiers de données faciles à
@@ -72,8 +79,10 @@ Séparation en couches : logique pure → hooks → rendu.
   sur les fenêtres, calculs de position).
 - `src/hooks/` : branchent la logique sur React (`useWindowManager`,
   `useWindowDrag`, `useClickOutside`, `useClock`).
-- `src/config/apps.ts` : liste des applications du bureau (id, icône, couleur,
-  contenu).
+- `src/config/apps.ts` : liste des applications du bureau (id, icône, contenu).
+- `src/config/wallpaper.ts` : chemin du fond d'écran (`null` = fond uni).
+- `src/components/pixel-icons.tsx` : icônes pixel art 16×16, dessinées en texte
+  (une lettre = une couleur Endesga 32).
 - `src/components/desktop/` : rendu du bureau, fenêtres, barre des tâches, menu.
 - `src/components/apps/` : contenu de chaque fenêtre, un fichier par app.
 - `src/data/` : contenu du portfolio, chaque texte en `{ fr, en }`.

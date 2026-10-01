@@ -10,7 +10,11 @@ export function AboutApp() {
     <Row>
       <Title>{profile.name}</Title>
       <Caption>{translate(profile.tagline)}</Caption>
-      <p className="mt-2">{translate(profile.bio)}</p>
+      {profile.bio.map((paragraph) => (
+        <p key={paragraph.fr} className="mt-4">
+          {translate(paragraph)}
+        </p>
+      ))}
     </Row>
   );
 }
