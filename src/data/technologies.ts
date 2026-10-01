@@ -1,11 +1,11 @@
 import type { Localized } from "@/i18n/locale";
 
-export type Skill = {
+export type Technology = {
   name: Localized;
   level: number;
 };
 
-export const skills: Skill[] = [
+export const technologies: Technology[] = [
   // Langages
   { name: { fr: "JavaScript / TypeScript", en: "JavaScript / TypeScript" }, level: 50 },
   { name: { fr: "Java (POO)", en: "Java (OOP)" }, level: 60 },

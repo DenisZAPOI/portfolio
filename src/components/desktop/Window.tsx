@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useId } from "react";
-import type { AppDefinition } from "@/config/apps";
+import type { AppDefinition, AppId } from "@/config/apps";
+import type { AcId } from "@/data/competences";
 import { useWindowDrag } from "@/hooks/useWindowDrag";
 import { useLocale } from "@/i18n/locale";
+import { WIDE_WINDOW_WIDTH, WINDOW_WIDTH } from "@/lib/windowLayout";
 
 type Props = {
   app: AppDefinition;
@@ -12,15 +14,35 @@ type Props = {
   zIndex: number;
   minimized: boolean;
   active: boolean;
+  page: number;
+  onPageChange: (page: number) => void;
+  focusedAc?: AcId;
+  navigationCount: number;
+  openApp: (id: AppId, page?: number, focusedAc?: AcId) => void;
   onFocus: () => void;
   onMinimize: () => void;
   onClose: () => void;
 };
 
-export function Window({ app, cascadeIndex, zIndex, minimized, active, onFocus, onMinimize, onClose }: Props) {
+export function Window({
+  app,
+  cascadeIndex,
+  zIndex,
+  minimized,
+  active,
+  page,
+  onPageChange,
+  focusedAc,
+  navigationCount,
+  openApp,
+  onFocus,
+  onMinimize,
+  onClose,
+}: Props) {
   const { ui } = useLocale();
   const titleId = useId();
-  const { windowRef, position, startDrag, moveDrag, stopDrag } = useWindowDrag(cascadeIndex);
+  const width = app.wide ? WIDE_WINDOW_WIDTH : WINDOW_WIDTH;
+  const { windowRef, position, startDrag, moveDrag, stopDrag } = useWindowDrag(cascadeIndex, width);
   const { Icon, Content } = app;
 
   // Donne le focus à la fenêtre à son ouverture, pour la navigation au clavier.
@@ -35,8 +57,8 @@ export function Window({ app, cascadeIndex, zIndex, minimized, active, onFocus, 
       aria-labelledby={titleId}
       tabIndex={-1}
       onPointerDownCapture={onFocus}
-      style={{ left: position.x, top: position.y, zIndex }}
-      className={`absolute flex w-[460px] max-w-[88vw] flex-col border-2 bg-surface shadow-[4px_4px_0_var(--color-ink)] outline-none max-sm:inset-x-0! max-sm:top-0! max-sm:bottom-13 max-sm:w-auto max-sm:max-w-none max-sm:shadow-none ${
+      style={{ left: position.x, top: position.y, width, zIndex }}
+      className={`absolute flex max-w-[88vw] flex-col border-2 bg-surface shadow-[4px_4px_0_var(--color-ink)] outline-none max-sm:inset-x-0! max-sm:top-0! max-sm:bottom-13 max-sm:w-auto! max-sm:max-w-none max-sm:shadow-none ${
         active ? "border-line-strong" : "border-line"
       } ${minimized ? "hidden" : ""}`}
     >
@@ -73,7 +95,14 @@ export function Window({ app, cascadeIndex, zIndex, minimized, active, onFocus, 
         </div>
       </div>
       <div className="flex max-h-[56vh] min-h-0 flex-col text-sm leading-relaxed text-body max-sm:max-h-none max-sm:flex-1">
-        <Content active={active} />
+        <Content
+          active={active}
+          page={page}
+          onPageChange={onPageChange}
+          focusedAc={focusedAc}
+          navigationCount={navigationCount}
+          openApp={openApp}
+        />
       </div>
     </div>
   );

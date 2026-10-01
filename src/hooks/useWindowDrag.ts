@@ -8,10 +8,10 @@ function getViewport() {
 }
 
 /** Déplace une fenêtre en la tirant par sa barre de titre (désactivé sur mobile). */
-export function useWindowDrag(cascadeIndex: number) {
+export function useWindowDrag(cascadeIndex: number, windowWidth: number) {
   const windowRef = useRef<HTMLDivElement>(null);
   const grabOffset = useRef<Point | null>(null);
-  const [position, setPosition] = useState(() => cascadePosition(cascadeIndex, getViewport()));
+  const [position, setPosition] = useState(() => cascadePosition(cascadeIndex, windowWidth, getViewport()));
 
   function startDrag(e: React.PointerEvent<HTMLElement>) {
     const clickedAButton = (e.target as HTMLElement).closest("button") !== null;

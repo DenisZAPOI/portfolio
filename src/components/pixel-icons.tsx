@@ -126,6 +126,25 @@ const envelope = [
   "................",
 ];
 
+const medal = [
+  "................",
+  "..kkkk....kkkk..",
+  "..kPPPk..kPPPk..",
+  "...kPPPkkPPPk...",
+  "....kPPPPPPk....",
+  ".....kkkkkk.....",
+  "....kyyyyyyk....",
+  "...kywyyyyyyk...",
+  "..kywyyyyyyyyk..",
+  "..kyyyyyyyyyBk..",
+  "..kyyyyyyyyyBk..",
+  "...kyyyyyyyBk...",
+  "....kBBBBBBk....",
+  ".....kkkkkk.....",
+  "................",
+  "................",
+];
+
 const padlock = [
   "................",
   ".....kkkkkk.....",
@@ -172,6 +191,7 @@ type IconProps = { className?: string };
 export const BriefcaseIcon = ({ className }: IconProps) => <PixelIcon art={briefcase} className={className} />;
 export const FloppyDiskIcon = ({ className }: IconProps) => <PixelIcon art={floppyDisk} className={className} />;
 export const MonitorIcon = ({ className }: IconProps) => <PixelIcon art={monitor} className={className} />;
+export const MedalIcon = ({ className }: IconProps) => <PixelIcon art={medal} className={className} />;
 export const CharacterIcon = ({ className }: IconProps) => <PixelIcon art={character} className={className} />;
 export const EnvelopeIcon = ({ className }: IconProps) => <PixelIcon art={envelope} className={className} />;
 export const PadlockIcon = ({ className }: IconProps) => <PixelIcon art={padlock} className={className} />;

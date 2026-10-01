@@ -52,7 +52,7 @@ export function Desktop() {
         ))}
       </ul>
 
-      {windows.openWindows.map(({ id, minimized }, layer) => {
+      {windows.openWindows.map(({ id, minimized, page, focusedAc, navigationCount }, layer) => {
         const appIndex = apps.findIndex((app) => app.id === id);
         return (
           <Window
@@ -62,6 +62,11 @@ export function Desktop() {
             zIndex={10 + layer}
             minimized={minimized}
             active={windows.activeId === id}
+            page={page}
+            focusedAc={focusedAc}
+            navigationCount={navigationCount}
+            onPageChange={(newPage) => windows.changePage(id, newPage)}
+            openApp={windows.open}
             onFocus={() => windows.focus(id)}
             onMinimize={() => windows.minimize(id)}
             onClose={() => windows.close(id)}

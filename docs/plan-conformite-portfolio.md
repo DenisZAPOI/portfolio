@@ -45,6 +45,10 @@ Seule exception : les intitulés officiels des compétences et des AC, recopiés
 | Niveaux montrés | **SAÉ des 3 années** : on montre la progression N1 → N2 → N3 (en 3e année : C1, C2, C6) |
 | `skills.exe` (outils avec barres en %) | Devient une app **« Outils » ou « Technologies »**, hors démarche compétences |
 | Traces / preuves | **Lien vers le dépôt GitHub** du projet, et peut-être (pas encore sûr) une **vidéo de démo** courte |
+| Tableau SAÉ ↔ AC | **Validé** tel quel le 2026-10-01 (y compris les propositions de Claude) |
+| Projets affichés | Terraria, Buvette PHP, Visite facile + « Ce portfolio » (sans AC pour l'instant). Placeholders supprimés |
+| Stage POP Solutions | **Pas un projet** de la double lecture : il reste seulement dans `experience.exe` |
+| Nom de l'app outils | **Technologies** |
 
 ## Écart avec le site actuel (état au 2026-10-01)
 
@@ -88,16 +92,28 @@ seulement la structure, la relecture et la traduction.
 
 ### Étape 4 — Ordre de travail
 
-1. **En attente** : document de Denis « quelle compétence/AC du référentiel a été mobilisée dans
-   quelle SAÉ ».
-2. Données : `competences.ts` + nouveau format de `projects.ts`.
-3. Refonte de `projets.exe` et de l'app compétences, avec navigation croisée.
-4. `tableau.exe`.
-5. Renommer `skills.exe` en « Outils » / « Technologies ».
+1. ✅ Document de Denis « quelle compétence/AC du référentiel a été mobilisée dans quelle SAÉ » :
+   [tableau-sae-competences.md](tableau-sae-competences.md), validé.
+2. ✅ Données : `src/data/competences.ts` (C1 à C6, 54 AC) + nouveau format de `src/data/projects.ts`
+   (période, tags, dépôts, AC avec argumentaire).
+3. ✅ Refonte de `projets.exe` (1 projet par page, AC regroupés par compétence avec argumentaire)
+   et nouvelle app `competences.exe` (C1, C2, C6 seulement, 1 par page ; AC non prouvés grisés ;
+   sous chaque AC, les projets qui le prouvent). Navigation croisée : clic sur un AC → la
+   compétence, clic sur un projet → le projet. La page de chaque fenêtre est gardée par le
+   gestionnaire de fenêtres (`open(id, page)`).
+4. **Prochaine étape** : `tableau.exe`.
+5. ✅ `skills.exe` renommé en `technologies.exe` (`tech.exe` en anglais).
 6. Traces et bilans au fur et à mesure.
 
 ## Points encore ouverts
 
-- Nom exact de l'app outils : « Outils » ou « Technologies » ?
 - Vidéos de démo : oui ou non, et hébergement (fichier dans `public/` ou plateforme externe) ?
-- Ce qu'on fait des projets actuels (placeholders sauf « Ce portfolio ») une fois le document reçu.
+- « Ce portfolio » n'a **pas d'AC** (décision de Denis) : il reste dans `projets.exe` sans
+  compétences mobilisées.
+
+## TODO (plus tard, non bloquant)
+
+- [ ] Code SAÉ de chaque projet (Terraria, Buvette PHP, Visite facile) — fourni par Denis.
+- [ ] Semestre de chaque projet — fourni par Denis.
+- [ ] Description de Terraria — écrite par Denis.
+- [ ] Description de la Buvette PHP — écrite par Denis.

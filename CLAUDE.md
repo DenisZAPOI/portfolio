@@ -17,11 +17,13 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 
 - Bureau fonctionnel : fenêtres, drag, réduction, Échap, menu démarrer, FR/EN, mobile, pagination.
 - Contenu réel : `perso.exe` (bio), `experience.exe` (stage POP Solutions + entrée verrouillée),
-  `skills.exe` (outils regroupés par thème), CV dans `public/cv.pdf`, liens de contact.
-- Contenu encore placeholder : les projets de `src/data/projects.ts` (sauf « Ce portfolio »).
-- **Prochaine étape** : rendre le site conforme aux consignes (double lecture compétences ↔
-  projets, preuves, tableau croisé, réflexivité). **En attente du document de Denis** qui relie
-  chaque SAÉ aux compétences/AC du référentiel. Détails dans le plan.
+  `technologies.exe` (outils regroupés par thème), CV dans `public/cv.pdf`, liens de contact.
+- Double lecture en place : `projets.exe` (AC mobilisés + argumentaires) ↔ `competences.exe`
+  (C1, C2, C6, projets qui prouvent chaque AC), avec navigation croisée.
+- Conformité aux consignes en cours : tableau SAÉ ↔ AC validé, données en place
+  (`src/data/competences.ts`, `src/data/projects.ts` : Terraria, Buvette PHP, Visite facile,
+  « Ce portfolio »).
+- **Prochaine étape** : `tableau.exe`, le tableau croisé projets × AC (voir le plan).
 
 ## Règles de contenu
 
@@ -74,25 +76,30 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   fond uni en attendant.
 - **Mobile** : la grille d'icônes reste, un tap ouvre la fenêtre en plein écran, pas de drag.
 - **Menu démarrer** : liste des fenêtres, liens rapides (CV, GitHub, LinkedIn), choix de langue.
-- **Pagination** : Expérience 1 par page, Projets 3, Compétences 5. Barre d'état toujours visible
+- **Pagination** : Expérience, Projets et Compétences 1 par page, Technologies 5. Barre d'état toujours visible
   en bas de la fenêtre, boutons flèche en relief Windows 95, flèches ← → du clavier sur la fenêtre
   active, retour en haut du contenu à chaque changement de page.
+- **Projets et compétences** : fenêtres larges (640 px). Dans `projets.exe`, un onglet par
+  compétence et des argumentaires repliés (`<details>`) ; dans `competences.exe`, un onglet par
+  niveau, description repliée, AC non prouvés grisés. La navigation croisée ouvre le bon onglet et
+  met en évidence l'AC visé (`focusedAc`).
 - **Expérience verrouillée** : `locked: true` → grisée, avec cadenas et « NULL » en mono.
 
 ## Organisation du code
 
 Séparation en couches : logique pure → hooks → rendu.
 - `src/lib/` : logique pure en TypeScript, sans React (une fonction par action sur les fenêtres,
-  calculs de position).
+  calculs de position, lecture croisée projets ↔ AC dans `competences.ts`).
 - `src/hooks/` : branchent la logique sur React (`useWindowManager`, `useWindowDrag`,
   `useClickOutside`, `useClock`, `usePagination`).
 - `src/config/apps.ts` : liste des applications du bureau (id, icône, contenu). Le contenu reçoit
-  `active` (fenêtre au premier plan).
+  `AppContentProps` : `active` (fenêtre au premier plan), `page` et `onPageChange` (la page est
+  gardée par le gestionnaire de fenêtres), `openApp(id, page?)` pour la navigation croisée.
 - `src/config/wallpaper.ts` : chemin du fond d'écran (`null` = fond uni).
 - `src/components/pixel-icons.tsx` : icônes pixel art dessinées en texte (une lettre = une couleur).
 - `src/components/desktop/` : bureau, fenêtres, barre des tâches, menu démarrer, horloge.
 - `src/components/apps/` : contenu de chaque fenêtre, un fichier par app. `shared.tsx` contient
-  `ScrollArea`, `Row`, `Title`, `Caption`. `PaginationBar.tsx` est la barre de pagination.
+  `ScrollArea`, `Row`, `Title`, `Caption`, `SectionTitle`, `Tag`, `Tabs` (onglets Windows 95), `DisclosureArrow`. `PaginationBar.tsx` est la barre de pagination.
 - `src/data/` : contenu du portfolio, chaque texte en `{ fr, en }`.
 - `src/i18n/` : langue courante (`useLocale` → `ui`, `translate`) et textes de l'interface (`ui.ts`).
 - `docs/` : documentation du projet (plan de conformité, extrait du référentiel).
