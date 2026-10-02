@@ -29,7 +29,11 @@ export type Project = {
 // Source : docs/tableau-sae-competences.md, validé par Denis le 2026-10-01.
 export const projects: Project[] = [
   {
-    title: { fr: "Terraria", en: "Terraria" },
+    title: { fr: "Terraria S2.01", en: "Terraria S2.01" },
+    description: {
+      fr: "Un court projet de jeu-vidéo qui avait pour but d'être un 'Terraria-like'. Le jeu propose un gameplay basé sur le minage de ressources afin de créer des outils/armes pour arriver à bout de différents types d'ennemis sur une carte déroulante. Java + JavaFX (avec SceneBuilder). Avec Edin DUPUIS, Jean-Christophe LAY et Luc CAI",
+      en: "A short video game project which aimed at resembling a 'Terraria-like'. The game offers a gameplay based around mining ressources in order to create tools/weapons which will help defeat various type of enemies placed on a scrolling map. Java + JavaFX(with SceneBuilder). Built with Edin DUPUIS, Jean-Christophe LAY and Luc CAI",
+    },
     period: { fr: "mai – septembre 2025", en: "May – September 2025" },
     tags: ["Java", "JavaFX", "SceneBuilder"],
     repositories: [{ name: "TerrariaSAE", url: "https://github.com/DaichiDen/TerrariaSAE" }],
@@ -145,7 +149,11 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: { fr: "Buvette PHP", en: "PHP snack bar app" },
+    title: { fr: "Buvette PHP S3.02 Web", en: "PHP snack bar app S3.02 Web" },
+    description: {
+      fr: "Application de gestion de buvette associative. Le but était de remplacer le fonctionnement de buvette passant par un carton avec des points. Le site propose un module client : page où un membre d'une telle association peut voir les boissons/nourriture qu'elle propose. Le site propose également un module barman : le barman est notifié de la présence d'une nouvelle commande et peut confirmer quand elle est prête. Enfin, elle possède aussi un module gestionnaire : le gérant de l'association peut voir des informations relatives au stock. Il peut aussi passer commande pour remplir les stocks",
+      en: ""
+    },
     period: { fr: "décembre 2025 – janvier 2026", en: "December 2025 – January 2026" },
     tags: ["PHP", "PDO", "Bootstrap"],
     repositories: [
@@ -235,7 +243,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: { fr: "Visite facile", en: "Visite facile" },
+    title: { fr: "Visite facile S4.A.01", en: "Visite facile S4.A.01" },
     description: {
       fr: "Application de recueil des visiteurs de l'IUT (portes ouvertes, salons) : formulaire d'inscription, liste filtrée, fiche visiteur, statistiques, export CSV, mode administrateur. Front React + TypeScript (Vite), back Flask (Python) + MongoDB, avec Isidore MEILLEUR et Edin DUPUIS.",
       en: "An app for recording visitors to the IUT (the university institute of technology where I study) at open days and education fairs: sign-up form, filtered list, visitor records, statistics, CSV export and an administrator mode. React + TypeScript front end (Vite), Flask (Python) back end + MongoDB, built with Isidore MEILLEUR and Edin DUPUIS.",
