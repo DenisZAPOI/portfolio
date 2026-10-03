@@ -14,7 +14,10 @@ export type Repository = {
 
 export type Project = {
   title: Localized;
-  /** Code de la SAÉ (ex. « S2.01 »), absent pour un projet personnel. */
+  /**
+   * Code de la SAÉ, absent pour un projet personnel. Il donne aussi le semestre :
+   * « S3.02 » = semestre 3, SAÉ n° 02.
+   */
   saeCode?: string;
   /** Un paragraphe par élément. */
   description?: Localized[];

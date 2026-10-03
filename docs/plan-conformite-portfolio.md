@@ -59,7 +59,7 @@ Seule exception : les intitulés officiels des compétences et des AC, recopiés
 | Exigence | État | Reste à faire |
 |---|---|---|
 | Lecture par compétences | ✅ `competences.exe` (C1, C2, C6, projets qui prouvent chaque AC) | Bilan réflexif |
-| Lecture par projets | ✅ `projets.exe` (code SAÉ, description, AC mobilisés + argumentaires) | Semestre (TODO) |
+| Lecture par projets | ✅ `projets.exe` (code SAÉ, donc semestre, description, AC mobilisés + argumentaires) | — |
 | Preuves | ✅ lien GitHub par projet | Vidéos de démo ? Captures (visionneuse) |
 | Réflexivité | ❌ aucune | Bilan par compétence, rédigé par Denis |
 | Tableau croisé | ✅ `tableau.exe` (projets × AC) | — |
@@ -75,8 +75,8 @@ Le stage POP Solutions reste seulement dans `experience.exe` (décision de Denis
   `C1-N3-AC2` (voir notation dans le référentiel).
 - `src/data/projects.ts` enrichi, pour chaque projet/SAÉ : code SAÉ, semestre, contexte, rôle,
   lien GitHub, vidéo (optionnelle), et pour chaque AC mobilisé : id de l'AC + argumentaire `{ fr, en }`.
-  En place : code SAÉ (`saeCode`), description (liste de paragraphes), période, tags, dépôts,
-  AC + argumentaires. Pas encore : semestre (TODO), contexte, rôle, vidéo.
+  En place : code SAÉ (`saeCode`, qui donne aussi le semestre), description (liste de
+  paragraphes), période, tags, dépôts, AC + argumentaires. Pas encore : contexte, rôle, vidéo.
 - **Le lien projet → AC n'est saisi qu'une fois, côté projet.** La vue par compétence et le tableau
   croisé sont calculés à partir de là, donc toujours cohérents.
 - Les outils restent des tags de projet. Une compétence affiche les outils des projets qui la
@@ -130,7 +130,7 @@ affichés à côté de la période dans `projets.exe`, fond d'écran temporaire.
 ## TODO (plus tard, non bloquant)
 
 - [x] Code SAÉ de chaque projet (`saeCode` dans `src/data/projects.ts`) — fourni par Denis.
-- [ ] Semestre de chaque projet — fourni par Denis.
+- [x] Semestre de chaque projet : donné par le code SAÉ (« S3.02 » = semestre 3, SAÉ n° 02).
 - [x] Description de Terraria — écrite par Denis.
 - [x] Description de la Buvette PHP — écrite par Denis.
 - [x] Post-it : texte de Denis en place (`src/data/desktop.ts`).
