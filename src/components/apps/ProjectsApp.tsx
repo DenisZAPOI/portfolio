@@ -68,9 +68,19 @@ function ProjectPage({ project, focusedAc, openApp }: ProjectPageProps) {
     <article>
       <div className="flex flex-wrap items-baseline justify-between gap-x-3">
         <Title>{translate(project.title)}</Title>
-        {project.period && <p className="font-mono text-xs text-green">{translate(project.period)}</p>}
+        {(project.saeCode || project.period) && (
+          <p className="font-mono text-xs text-green">
+            {project.saeCode && `SAÉ ${project.saeCode}`}
+            {project.saeCode && project.period && " · "}
+            {project.period && translate(project.period)}
+          </p>
+        )}
       </div>
-      {project.description && <p className="mt-2">{translate(project.description)}</p>}
+      {project.description?.map((paragraph) => (
+        <p key={paragraph.fr} className="mt-2">
+          {translate(paragraph)}
+        </p>
+      ))}
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
         {project.tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>

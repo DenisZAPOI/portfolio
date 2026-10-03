@@ -14,7 +14,10 @@ export type Repository = {
 
 export type Project = {
   title: Localized;
-  description?: Localized;
+  /** Code de la SAÉ (ex. « S2.01 »), absent pour un projet personnel. */
+  saeCode?: string;
+  /** Un paragraphe par élément. */
+  description?: Localized[];
   period?: Localized;
   tags: string[];
   /** Traces : dépôts GitHub du projet. */
@@ -29,11 +32,18 @@ export type Project = {
 // Source : docs/tableau-sae-competences.md, validé par Denis le 2026-10-01.
 export const projects: Project[] = [
   {
-    title: { fr: "Terraria S2.01", en: "Terraria S2.01" },
-    description: {
-      fr: "Un court projet de jeu-vidéo qui avait pour but d'être un 'Terraria-like'. Le jeu propose un gameplay basé sur le minage de ressources afin de créer des outils/armes pour arriver à bout de différents types d'ennemis sur une carte déroulante. Java + JavaFX (avec SceneBuilder). Avec Edin DUPUIS, Jean-Christophe LAY et Luc CAI",
-      en: "A short video game project which aimed at resembling a 'Terraria-like'. The game offers a gameplay based around mining ressources in order to create tools/weapons which will help defeat various type of enemies placed on a scrolling map. Java + JavaFX(with SceneBuilder). Built with Edin DUPUIS, Jean-Christophe LAY and Luc CAI",
-    },
+    title: { fr: "Terraria", en: "Terraria" },
+    saeCode: "S2.01",
+    description: [
+      {
+        fr: "Un court projet de jeu vidéo qui avait pour but d'être un « Terraria-like ». Le jeu propose un gameplay basé sur le minage de ressources afin de créer des outils/armes pour arriver à bout de différents types d'ennemis sur une carte déroulante.",
+        en: "A short video game project which aimed at resembling a “Terraria-like”. The game offers a gameplay based around mining resources in order to create tools/weapons which will help defeat various types of enemies placed on a scrolling map.",
+      },
+      {
+        fr: "Java + JavaFX (avec SceneBuilder). Avec Edin DUPUIS, Jean-Christophe LAY et Luc CAI.",
+        en: "Java + JavaFX (with SceneBuilder). Built with Edin DUPUIS, Jean-Christophe LAY and Luc CAI.",
+      },
+    ],
     period: { fr: "mai – septembre 2025", en: "May – September 2025" },
     tags: ["Java", "JavaFX", "SceneBuilder"],
     repositories: [{ name: "TerrariaSAE", url: "https://github.com/DaichiDen/TerrariaSAE" }],
@@ -149,11 +159,26 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: { fr: "Buvette PHP S3.02 Web", en: "PHP snack bar app S3.02 Web" },
-    description: {
-      fr: "Application de gestion de buvette associative. Le but était de remplacer le fonctionnement de buvette passant par un carton avec des points. Le site propose un module client : page où un membre d'une telle association peut voir les boissons/nourriture qu'elle propose. Le site propose également un module barman : le barman est notifié de la présence d'une nouvelle commande et peut confirmer quand elle est prête. Enfin, elle possède aussi un module gestionnaire : le gérant de l'association peut voir des informations relatives au stock. Il peut aussi passer commande pour remplir les stocks",
-      en: ""
-    },
+    title: { fr: "Buvette PHP", en: "PHP snack bar app" },
+    saeCode: "S3.02 Web",
+    description: [
+      {
+        fr: "Application de gestion de buvette associative. Le but était de remplacer l'ancien fonctionnement, qui passait par un carton avec des points.",
+        en: "An app for managing a club's snack bar. The goal was to replace the old system, which relied on a paper card and points.",
+      },
+      {
+        fr: "Le site propose un module client : page où un membre d'une telle association peut voir les boissons/nourriture qu'elle propose.",
+        en: "The site offers a customer module: a page where a member of such a club can see the drinks/food it offers.",
+      },
+      {
+        fr: "Il comprend également un module barman : le barman est notifié de la présence d'une nouvelle commande et peut confirmer quand elle est prête.",
+        en: "It also includes a bartender module: the bartender is notified when a new order comes in and can confirm when it is ready.",
+      },
+      {
+        fr: "Enfin, un module gestionnaire permet au gérant de l'association de voir des informations relatives au stock et de passer commande pour le réapprovisionner.",
+        en: "Finally, a manager module lets the club's manager see stock-related information and place orders to restock.",
+      },
+    ],
     period: { fr: "décembre 2025 – janvier 2026", en: "December 2025 – January 2026" },
     tags: ["PHP", "PDO", "Bootstrap"],
     repositories: [
@@ -243,11 +268,18 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: { fr: "Visite facile S4.A.01", en: "Visite facile S4.A.01" },
-    description: {
-      fr: "Application de recueil des visiteurs de l'IUT (portes ouvertes, salons) : formulaire d'inscription, liste filtrée, fiche visiteur, statistiques, export CSV, mode administrateur. Front React + TypeScript (Vite), back Flask (Python) + MongoDB, avec Isidore MEILLEUR et Edin DUPUIS.",
-      en: "An app for recording visitors to the IUT (the university institute of technology where I study) at open days and education fairs: sign-up form, filtered list, visitor records, statistics, CSV export and an administrator mode. React + TypeScript front end (Vite), Flask (Python) back end + MongoDB, built with Isidore MEILLEUR and Edin DUPUIS.",
-    },
+    title: { fr: "Visite facile", en: "Visite facile" },
+    saeCode: "S4.A.01",
+    description: [
+      {
+        fr: "Application de recueil des visiteurs de l'IUT (portes ouvertes, salons) : formulaire d'inscription, liste filtrée, fiche visiteur, statistiques, export CSV, mode administrateur.",
+        en: "An app for recording visitors to the IUT (the university institute of technology where I study) at open days and education fairs: sign-up form, filtered list, visitor records, statistics, CSV export and an administrator mode.",
+      },
+      {
+        fr: "Front React + TypeScript (Vite), back Flask (Python) + MongoDB, avec Isidore MEILLEUR et Edin DUPUIS.",
+        en: "React + TypeScript front end (Vite), Flask (Python) back end + MongoDB, built with Isidore MEILLEUR and Edin DUPUIS.",
+      },
+    ],
     period: { fr: "février – avril 2026", en: "February – April 2026" },
     tags: ["React", "TypeScript", "Vite", "Flask", "Python", "MongoDB", "Pydantic", "Zod", "Chart.js"],
     repositories: [
@@ -346,10 +378,12 @@ export const projects: Project[] = [
   },
   {
     title: { fr: "Ce portfolio", en: "This portfolio" },
-    description: {
-      fr: "Site perso façon bureau rétro, Next.js et Tailwind.",
-      en: "Retro desktop-style personal site, Next.js and Tailwind.",
-    },
+    description: [
+      {
+        fr: "Site perso façon bureau rétro, Next.js et Tailwind.",
+        en: "Retro desktop-style personal site, Next.js and Tailwind.",
+      },
+    ],
     tags: ["Next.js", "TypeScript", "Tailwind"],
     repositories: [{ name: "portfolio", url: "https://github.com/DenisZAPOI/portfolio" }],
     acs: [],

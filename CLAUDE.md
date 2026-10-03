@@ -13,7 +13,7 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 - **[docs/referentiel-parcours-A.md](docs/referentiel-parcours-A.md)** : compétences C1 à C6,
   niveaux et AC recopiés du référentiel, notation `C1-N3-AC2`, liste des SAÉ, fiche portfolio.
 
-## Où en est le projet (2026-10-01)
+## Où en est le projet (2026-10-04)
 
 - Bureau fonctionnel : fenêtres, drag, réduction, Échap, menu démarrer, FR/EN, mobile, pagination.
 - Contenu réel : `perso.exe` (bio), `experience.exe` (stage POP Solutions + entrée verrouillée),
@@ -21,13 +21,13 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 - Double lecture en place : `projets.exe` (AC mobilisés + argumentaires) ↔ `competences.exe`
   (C1, C2, C6, projets qui prouvent chaque AC), avec navigation croisée.
 - Conformité aux consignes en cours : tableau SAÉ ↔ AC validé, données en place
-  (`src/data/competences.ts`, `src/data/projects.ts` : Terraria, Buvette PHP, Visite facile,
-  « Ce portfolio »).
+  (`src/data/competences.ts`, `src/data/projects.ts` : Terraria S2.01, Buvette PHP S3.02 Web,
+  Visite facile S4.A.01, « Ce portfolio »), avec une description pour chaque projet.
 - Tableau croisé projets × AC : `tableau.exe`.
 - Bureau rempli : `lisezmoi.txt` ouvert au chargement, post-it en pixel art (texte de Denis),
   visionneuse de captures (en attente des captures), corbeille (en attente de l'easter egg),
   icônes sur deux colonnes.
-- Site en ligne sur Vercel.
+- Site en ligne sur Vercel. Fond d'écran temporaire (`public/wallpaper.png`).
 - **Prochaine étape** : bilans réflexifs par compétence et traces (vidéos ?) — « Étape 3 —
   Réflexivité » et point 6 de l'ordre de travail du plan. Contenu en attente : voir le TODO du plan.
 
@@ -41,7 +41,7 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 - Traduction anglaise : Denis est niveau C1, donc anglais avancé et naturel qui garde son ton.
   Expliquer les sigles français pour un lecteur étranger (BUT, SNT…).
 - Les textes longs sont découpés en paragraphes : listes de `{ fr, en }` (voir `profile.bio`,
-  `experiences[].description`).
+  `experiences[].description`, `projects[].description`).
 
 ## Méthode de travail
 
@@ -50,8 +50,8 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
 - **Lisibilité avant abstraction** : ce n'est pas une librairie. Pas de génériques, de reducers ni
   de hooks configurables quand du code spécifique et explicite suffit. Des noms complets
   (`translate`, pas `l`).
-- **Git** : Denis travaille seul, donc commit et push **directement sur `main`**, sans branche ni
-  PR, mais **uniquement quand il le demande**. Messages de commit en français, clairs, structurés
+- **Git** : Denis travaille seul, sans PR. Travail en cours sur la branche **`develop`** (depuis le
+  2026-10-03) ; `main` est la version en ligne. Commit et push **uniquement quand il le demande**. Messages de commit en français, clairs, structurés
   par thème. Ne pas committer `.claude/` (config locale du serveur de dev).
 - Avant de rendre la main : `npm run lint`, `npx tsc --noEmit`, `npm run build`, puis test dans le
   navigateur (`npm run dev`, http://localhost:3000).
@@ -93,8 +93,8 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   de tailles en `px`** (sauf ombres dures et valeurs `max-sm:`) : utiliser l'échelle Tailwind, les
   tokens `text-label` / `text-label-lg`, ou des `rem`. Fenêtres : 30 rem, 42 rem si `wide`,
   contenu limité à 70 % de l'écran et jamais sous la barre des tâches.
-- **Fond d'écran** : image fournie par Denis plus tard (`public/` + `src/config/wallpaper.ts`),
-  fond uni en attendant.
+- **Fond d'écran** : image fournie par Denis (`public/` + `src/config/wallpaper.ts`). Un fond
+  temporaire est en place (`public/wallpaper.png`), en attendant le définitif.
 - **Mobile** : la grille d'icônes reste, un tap ouvre la fenêtre en plein écran, pas de drag.
   Pas de widgets à droite, et `lisezmoi.txt` ne s'ouvre pas tout seul.
 - **Icônes du bureau** : deux colonnes fixées dans `desktopColumns` (`src/config/apps.ts`) :
@@ -106,7 +106,8 @@ ouvrent des fenêtres déplaçables, avec une barre des tâches et un menu déma
   pagination, des onglets). Barre d'état toujours visible en bas de la fenêtre, boutons flèche en
   relief Windows 95, flèches ← → du clavier sur la fenêtre active, retour en haut du contenu à chaque
   changement de page.
-- **Projets, compétences, tableau** : fenêtres larges (640 px). Dans `projets.exe`, un onglet par
+- **Projets, compétences, tableau** : fenêtres larges (640 px). Dans `projets.exe`, le code SAÉ
+  (`saeCode`, « SAÉ S2.01 ») est affiché en mono à côté de la période. Dans `projets.exe`, un onglet par
   compétence et des argumentaires repliés (`<details>`, flèche dans un bouton en relief) ; dans
   `competences.exe`, un onglet par niveau, description repliée, AC non prouvés grisés ; dans
   `tableau.exe`, un onglet par compétence, AC en lignes, projets en colonnes. La navigation croisée
@@ -146,8 +147,8 @@ Séparation en couches : logique pure → hooks → rendu.
   `ScrollArea`, `Row`, `Title`, `Caption`, `SectionTitle`, `Tag`, `Tabs` (onglets Windows 95),
   `DisclosureArrow`. `PaginationBar.tsx` est la barre de pagination (et exporte `arrowButtonClass`).
 - `src/data/` : contenu du portfolio, chaque texte en `{ fr, en }`. `competences.ts` : référentiel
-  (54 AC, intitulés officiels) ; `projects.ts` : projets et AC mobilisés avec argumentaires (seul
-  endroit où l'on relie un projet aux AC) ; `technologies.ts`, `experiences.ts`, `profile.ts` ;
+  (54 AC, intitulés officiels) ; `projects.ts` : projets (titre, code SAÉ à part dans `saeCode`,
+  description) et AC mobilisés avec argumentaires (seul endroit où l'on relie un projet aux AC) ; `technologies.ts`, `experiences.ts`, `profile.ts` ;
   `desktop.ts` : contenu du bureau (accueil, post-it, captures dans `public/screenshots/`, fichiers
   de la corbeille).
 - `src/i18n/` : langue courante (`useLocale` → `ui`, `translate`) et textes de l'interface (`ui.ts`).

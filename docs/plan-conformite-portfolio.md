@@ -54,12 +54,12 @@ Seule exception : les intitulés officiels des compétences et des AC, recopiés
 | Tableau croisé | **Projets × AC** (pas projets × compétences) |
 | Remplissage du bureau | `lisezmoi.txt` au chargement, visionneuse de captures, post-it, corbeille avec easter egg |
 
-## Écart avec le site (mis à jour le 2026-10-01, après la refonte)
+## Écart avec le site (mis à jour le 2026-10-04)
 
 | Exigence | État | Reste à faire |
 |---|---|---|
 | Lecture par compétences | ✅ `competences.exe` (C1, C2, C6, projets qui prouvent chaque AC) | Bilan réflexif |
-| Lecture par projets | ✅ `projets.exe` (AC mobilisés + argumentaires) | Code SAÉ, semestre, descriptions (TODO) |
+| Lecture par projets | ✅ `projets.exe` (code SAÉ, description, AC mobilisés + argumentaires) | Semestre (TODO) |
 | Preuves | ✅ lien GitHub par projet | Vidéos de démo ? Captures (visionneuse) |
 | Réflexivité | ❌ aucune | Bilan par compétence, rédigé par Denis |
 | Tableau croisé | ✅ `tableau.exe` (projets × AC) | — |
@@ -75,8 +75,8 @@ Le stage POP Solutions reste seulement dans `experience.exe` (décision de Denis
   `C1-N3-AC2` (voir notation dans le référentiel).
 - `src/data/projects.ts` enrichi, pour chaque projet/SAÉ : code SAÉ, semestre, contexte, rôle,
   lien GitHub, vidéo (optionnelle), et pour chaque AC mobilisé : id de l'AC + argumentaire `{ fr, en }`.
-  En place : période, tags, dépôts, AC + argumentaires. Pas encore : code SAÉ, semestre (TODO),
-  contexte, rôle, vidéo.
+  En place : code SAÉ (`saeCode`), description (liste de paragraphes), période, tags, dépôts,
+  AC + argumentaires. Pas encore : semestre (TODO), contexte, rôle, vidéo.
 - **Le lien projet → AC n'est saisi qu'une fois, côté projet.** La vue par compétence et le tableau
   croisé sont calculés à partir de là, donc toujours cohérents.
 - Les outils restent des tags de projet. Une compétence affiche les outils des projets qui la
@@ -116,6 +116,8 @@ seulement la structure, la relecture et la traduction.
 
 Hors plan, fait aussi le 2026-10-01 : déploiement sur Vercel, remplissage du bureau
 (`lisezmoi.txt`, post-it, visionneuse, corbeille, icônes sur deux colonnes).
+Le 2026-10-04 : descriptions de Terraria et de la Buvette PHP (texte de Denis, traduites), codes SAÉ
+affichés à côté de la période dans `projets.exe`, fond d'écran temporaire.
 
 ## Points encore ouverts
 
@@ -127,12 +129,12 @@ Hors plan, fait aussi le 2026-10-01 : déploiement sur Vercel, remplissage du bu
 
 ## TODO (plus tard, non bloquant)
 
-- [ ] Code SAÉ de chaque projet (Terraria, Buvette PHP, Visite facile) — fourni par Denis.
+- [x] Code SAÉ de chaque projet (`saeCode` dans `src/data/projects.ts`) — fourni par Denis.
 - [ ] Semestre de chaque projet — fourni par Denis.
-- [ ] Description de Terraria — écrite par Denis.
-- [ ] Description de la Buvette PHP — écrite par Denis.
+- [x] Description de Terraria — écrite par Denis.
+- [x] Description de la Buvette PHP — écrite par Denis.
 - [x] Post-it : texte de Denis en place (`src/data/desktop.ts`).
 - [ ] Contenu du bureau dans `src/data/desktop.ts` (fourni par Denis) : texte d'accueil de
   lisezmoi.txt, captures des projets avec légende (`public/screenshots/`), fichiers « supprimés »
   de la corbeille (nom + une phrase).
-- [ ] Fond d'écran (`public/` + `src/config/wallpaper.ts`).
+- [ ] Fond d'écran définitif (`public/` + `src/config/wallpaper.ts`) : un fond temporaire est en place.
